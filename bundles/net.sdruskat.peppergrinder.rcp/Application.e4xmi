@@ -5,7 +5,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_6wlLkcgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.perspective.sample">
         <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.partsashcontainer.sample">
           <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.partstack.sample">
-            <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.part.sample" contributionURI="bundleclass://net.sdruskat.peppergrinder.rcp/net.sdruskat.peppergrinder.rcp.parts.SamplePart" label="Sample Part"/>
+            <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.part.sample" contributionURI="bundleclass://net.sdruskat.peppergrinder.rcp/net.sdruskat.peppergrinder.rcp.parts.ConversionWorkflowPart" label="Conversion"/>
           </children>
         </children>
       </children>

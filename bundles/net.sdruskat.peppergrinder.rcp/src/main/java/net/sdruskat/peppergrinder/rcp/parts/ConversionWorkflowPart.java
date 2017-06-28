@@ -9,7 +9,7 @@ import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class SamplePart {
+public class ConversionWorkflowPart {
 
 	@Inject
 	private MDirtyable dirty;
