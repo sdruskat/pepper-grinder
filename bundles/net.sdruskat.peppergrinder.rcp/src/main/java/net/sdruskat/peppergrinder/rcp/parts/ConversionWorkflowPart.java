@@ -12,6 +12,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+
+import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunner;
+import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunnerBuilder;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
@@ -66,6 +70,7 @@ public class ConversionWorkflowPart {
 		btnRun.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
+				ConversionRunner runner = ConversionRunnerBuilder.withCorpusImportPath(corpusDirectoryPath).build();
 				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Yep", "Yo");
 			}
 		});
