@@ -12,6 +12,10 @@
                name="applicationCSS"
                value="platform:/plugin/net.sdruskat.peppergrinder.rcp/css/default.css">
          </property>
+         <property
+               name="appName"
+               value="Pepper Grinder">
+         </property>
       </product>
    </extension>
 
