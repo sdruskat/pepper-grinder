@@ -17,6 +17,34 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import plugin="javax.inject"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.e4.ui.model.workbench"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.e4.ui.services"/>
+      <import plugin="org.eclipse.e4.ui.workbench"/>
+      <import plugin="org.eclipse.e4.core.di"/>
+      <import plugin="org.eclipse.e4.ui.di"/>
+      <import plugin="org.eclipse.e4.core.contexts"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.corpus-tools.pepper-framework"/>
+      <import plugin="org.corpus-tools.pepper-lib"/>
+      <import plugin="org.apache.commons.io" version="2.4.0" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="19.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.aether.api"/>
+      <import plugin="org.eclipse.aether.impl"/>
+      <import plugin="org.eclipse.aether.maven"/>
+      <import plugin="org.eclipse.aether.connector.basic" version="1.0.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.aether.spi" version="1.0.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.aether.transport.file" version="1.0.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.aether.transport.http" version="1.0.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.aether.util" version="1.0.2" match="greaterOrEqual"/>
+      <import plugin="org.codehaus.plexus.utils" version="3.0.20" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.emf.common"/>
+   </requires>
+
    <plugin
          id="net.sdruskat.peppergrinder.rcp"
          download-size="0"

@@ -71,7 +71,7 @@ public class ConversionWorkflowPart {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				ConversionRunner runner = ConversionRunnerBuilder.withCorpusImportPath(corpusDirectoryPath).build();
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Yep", "Yo");
+				runner.run();
 			}
 		});
 	}
