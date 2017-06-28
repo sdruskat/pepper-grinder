@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/net.sdruskat.peppergrinder.feature_1.0.0.qualifier.jar" id="net.sdruskat.peppergrinder.feature" version="1.0.0.qualifier">
-      <category name="peppergrinder"/>
-   </feature>
-   <category-def name="peppergrinder" label="Pepper Grinder"/>
-</site>
