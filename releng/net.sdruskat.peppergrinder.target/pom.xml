@@ -1,0 +1,14 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.sdruskat.peppergrinder</groupId>
+        <artifactId>net.sdruskat.peppergrinder.releng</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <groupId>net.sdruskat.peppergrinder</groupId>
+    <artifactId>net.sdruskat.peppergrinder.target</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>eclipse-target-definition</packaging>
+
+</project>
+

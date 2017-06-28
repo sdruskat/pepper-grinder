@@ -14,6 +14,7 @@
     <modules>
         <module>net.sdruskat.peppergrinder.update</module>
         <module>net.sdruskat.peppergrinder.product</module>
+        <module>net.sdruskat.peppergrinder.target</module>
     </modules>
 </project>
 
