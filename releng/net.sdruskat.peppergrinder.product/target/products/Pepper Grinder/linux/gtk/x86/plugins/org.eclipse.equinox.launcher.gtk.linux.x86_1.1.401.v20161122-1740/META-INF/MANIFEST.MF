@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.equinox.launcher.gtk.linux.x86;single
+ ton:=true
+Archiver-Version: Plexus Archiver
+Built-By: genie.releng
+Bundle-ManifestVersion: 2
+Eclipse-PlatformFilter: (& (osgi.ws=gtk) (osgi.os=linux) (osgi.arch=x8
+ 6))
+Eclipse-SourceReferences: scm:git:git://git.eclipse.org/gitroot/equino
+ x/rt.equinox.framework.git;path="bundles/org.eclipse.equinox.launcher
+ .gtk.linux.x86";tag="M20161123-0400";commitId=1f732411635013c5864a570
+ 4d856a92bf410ecdd
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.equinox.launcher;bundle-version="[1.0.0,1.4
+ .0)"
+Bundle-Name: %pluginName
+Bundle-Version: 1.1.401.v20161122-1740
+Bundle-Localization: launcher.gtk.linux.x86
+Created-By: Apache Maven 3.3.3
+Build-Jdk: 1.8.0_102
+Eclipse-BundleShape: dir
+
+Name: launcher.gtk.linux.x86.properties
+SHA-256-Digest: 4FVRmAq7h30Nk4Lza+Y83ZO7NkjU0hDNCCNOs3e1oOo=
+
+Name: about.html
+SHA-256-Digest: VPMitIIkEm99NLfkFf/bqCv7gqDh+SdCqyIrbu4QETQ=
+
+Name: eclipse_1618.so
+SHA-256-Digest: CYAF+F6IDN2ACT9lz5o/ebv89j5SRm0E1nH1AfSySGM=
+

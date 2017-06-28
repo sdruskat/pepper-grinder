@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: net.sdruskat.peppergrinder.rcp;singleton:=true
+Bundle-Name: Pepper Grinder Core Plugin
+Bundle-Version: 1.0.0.201706281455
+Require-Bundle: javax.inject;bundle-version="0.0.0",org.eclipse.swt;bu
+ ndle-version="0.0.0",org.eclipse.e4.ui.model.workbench;bundle-version
+ ="0.0.0",org.eclipse.jface;bundle-version="0.0.0",org.eclipse.e4.ui.s
+ ervices;bundle-version="0.0.0",org.eclipse.e4.ui.workbench;bundle-ver
+ sion="0.0.0",org.eclipse.e4.core.di;bundle-version="0.0.0",org.eclips
+ e.e4.ui.di;bundle-version="0.0.0",org.eclipse.e4.core.contexts;bundle
+ -version="0.0.0",org.eclipse.core.runtime;bundle-version="0.0.0"
+Bundle-ManifestVersion: 2
+Bundle-Activator: net.sdruskat.peppergrinder.rcp.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Stephan Druskat
+

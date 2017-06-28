@@ -1,0 +1,81 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: f113gdAdZwAC6IURxqNWRqfTEU7Ii
+ IwNj+OrvgtWZn8=
+SHA-256-Digest-Manifest: Jh7/JzuAxUpvwIesnTV1A8M1Zo18qCmtBaWbKLd4cAw=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: bin/gtk/linux/ppc64/launcher
+SHA-256-Digest: GJVTrYtJ0mIjKUmtkPmxY8HoFB03gjwWhYkLMUCxIg4=
+
+Name: bin/gtk/linux/x86_64/launcher
+SHA-256-Digest: 8H+U//KPHzI/OjXgAKz3NS5SURUU71AZ/ZYq/1uPl9A=
+
+Name: bin/gtk/solaris/x86_64/launcher
+SHA-256-Digest: E+nw4AQwAXuTENHpPbAqv11EKsTgcL1Gdc/UHgSRPso=
+
+Name: bin/win32/win32/x86_64/launcher.exe
+SHA-256-Digest: BqXH0/UHwZaesdzgUH8OE/tOmi3rIwYNPOLWjKzTZzM=
+
+Name: bin/cocoa/macosx/x86_64/Eclipse.app/Contents/Info.plist
+SHA-256-Digest: m+Sq/lud07x/UwYO2jbwSMqKmPYE0t26m1NSmR6VR3g=
+
+Name: bin/gtk/linux/x86/launcher
+SHA-256-Digest: WrQoblL80S6aWImfZcWUQ7pF66OAhLWVhmy3hQGwHlo=
+
+Name: bin/gtk/solaris/sparcv9/launcher
+SHA-256-Digest: kWUbOXbIrxFSlHnXyi7Hz2+8+4Wwh/Z2LmlflhmrB4o=
+
+Name: build.properties
+SHA-256-Digest: Wb+0wn6tGX+Z4bm4/fpyL/TaRHZpHUf0SR3Ha2fg9KI=
+
+Name: bin/gtk/aix/ppc64/launcher
+SHA-256-Digest: OygAtksoX3ddEQ8YIkMwjiMiPF/uiVO3u/IYgWQKGoc=
+
+Name: bin/win32/win32/x86/eclipsec.exe
+SHA-256-Digest: XG3UKjCvW97Lcsiv7jmenRweuh5POsHUeITdyFJXxyw=
+
+Name: gtk_root/about.html
+SHA-256-Digest: NLLEuWycmvLEVXppCOg/ueS3tSWz5V841sYOE0P8QV8=
+
+Name: bin/gtk/linux/s390/launcher
+SHA-256-Digest: XlFfBhQyf+zqFoVu5pNeXSHUdWuQGdKL/LMZs/lFWFs=
+
+Name: license.html
+SHA-256-Digest: gb5ZzrbOyFArzDLUIG4huZV/GHHBYb0EtixuMKXnhqs=
+
+Name: bin/gtk/aix/ppc/launcher
+SHA-256-Digest: 0MZPWAh2r9wzMb0xX7Q6EiRKMFQeyfWtq3BM+yeoJ2o=
+
+Name: bin/gtk/linux/s390x/launcher
+SHA-256-Digest: WBE1r07QdPRXNUuUPaQq0/Vd35+eoGENcUHj6k5h2nM=
+
+Name: bin/win32/win32/x86/launcher.exe
+SHA-256-Digest: mzAQjDtsG6EMuLfZZLT1K1gtl82Kz1/3hpzE0RYcwHc=
+
+Name: bin/gtk/hpux/ia64/launcher
+SHA-256-Digest: hBRlkvguoCqd3XQeOm89Euf5bI3Bd18XyQHfo+K+zyM=
+
+Name: feature.xml
+SHA-256-Digest: HeImKOiepEwq3xcpvWxikS/NaIVB0aHG8sglOVP/de0=
+
+Name: feature.properties
+SHA-256-Digest: MfS0dld2mfGWI7NXNwQ2ijJc0jgH3lsD/v8M4vp13jA=
+
+Name: bin/cocoa/macosx/x86_64/Eclipse.app/Contents/MacOS/launcher
+SHA-256-Digest: R1AfHiFz4diuv49yYbZUYUT+6qMTM/DfbeNPfev3jzM=
+
+Name: bin/win32/win32/x86_64/eclipsec.exe
+SHA-256-Digest: pQN1tTTVk5VjBTuAr7KfqzAfcin+L8zAvlStNXYEJm8=
+
+Name: bin/gtk/linux/ppc64le/launcher
+SHA-256-Digest: sujtLyhOGgyFvxDEX5Lg/P+pahVx6Iu99xzQw+h9Mpw=
+
+Name: epl-v10.html
+SHA-256-Digest: 8GSw4aNBim+4CHFc1TYSYQy3Ei4T2BVP57HxmJUvTBs=
+
+Name: build.xml
+SHA-256-Digest: VOoKQs1AWAM7k5E9pHoZQc0PxVbHm5H0VJ/b5uzhy3c=
+
+Name: bin/gtk/linux/ppc/launcher
+SHA-256-Digest: H/YBaEM+FNPgbq/4U6uChihvFFZcVK/xWrSqBw13Y/c=
+

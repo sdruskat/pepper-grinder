@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="net.sdruskat.peppergrinder.feature"
+      label="Pepper Grinder Feature"
+      version="1.0.0.201706281455">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="net.sdruskat.peppergrinder.rcp"
+         download-size="12"
+         install-size="19"
+         version="1.0.0.201706281455"
+         unpack="false"/>
+
+</feature>
