@@ -58,6 +58,8 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 	}
 
 	protected abstract StepDesc createImporterParams();
+	
+	protected abstract StepDesc createManipulatorParams();
 
 	protected abstract StepDesc createExporterParams();
 

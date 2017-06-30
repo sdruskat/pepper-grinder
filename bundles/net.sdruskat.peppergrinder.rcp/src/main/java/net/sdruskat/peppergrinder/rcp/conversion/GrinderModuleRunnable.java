@@ -40,6 +40,17 @@ public class GrinderModuleRunnable extends PepperModuleRunnable {
 //		stepDesc.setProps(tRACesProperties);
 		return (stepDesc);
 	}
+	
+	@Override
+	protected StepDesc createManipulatorParams() {
+		StepDesc stepDesc = new StepDesc();
+		stepDesc.setCorpusDesc(new CorpusDesc());
+		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(Platform.getLocation().toFile().getAbsolutePath() + "/annis-files"));
+		stepDesc.setName("OrderRelationAdder");
+		stepDesc.setVersion("1.0.2.SNAPSHOT");
+		stepDesc.setModuleType(MODULE_TYPE.EXPORTER);
+		return (stepDesc);
+	}
 
 	/* (non-Javadoc)
 	 * @see net.sdruskat.peppergrinder.rcp.conversion.PepperModuleRunnable#createExporterParams()
