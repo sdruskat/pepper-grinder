@@ -79,7 +79,7 @@ public class ConversionRunner {
 		else {
 			LoadPepperModuleRunnable moduleRunnable = new LoadPepperModuleRunnable(getPepper());
 			try {
-				new ProgressMonitorDialog(new Shell()).run(false, true, moduleRunnable);
+				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 			}
 			catch (InvocationTargetException | InterruptedException e) {
 //				log.error("Loading available non-core Pepper modules did not complete successfully!", e);
@@ -130,7 +130,7 @@ public class ConversionRunner {
 		try {
 				PepperModuleRunnable moduleRunnable = createModuleRunnable(/*project, */true);
 //				progressService.run(false, true, moduleRunnable);
-				new ProgressMonitorDialog(new Shell()).run(false, true, moduleRunnable);
+				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 
 				boolean outcome = moduleRunnable.get().booleanValue();
 				

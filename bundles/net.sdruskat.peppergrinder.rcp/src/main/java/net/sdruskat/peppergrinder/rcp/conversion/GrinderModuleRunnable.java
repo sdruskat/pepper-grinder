@@ -21,10 +21,13 @@ import org.eclipse.emf.common.util.URI;
  */
 public class GrinderModuleRunnable extends PepperModuleRunnable {
 
-	private Properties tRACesProperties = null;
+	private Properties tRACesProperties;
+	private Properties orderRelationAdderProps;
 
 	public GrinderModuleRunnable(boolean cancelable, PepperConnector pepperConnector, String corpusDirectoryPath) {
 		super(cancelable, pepperConnector, corpusDirectoryPath);
+		orderRelationAdderProps = new Properties();
+		orderRelationAdderProps.put("segmentation-layers", "{TR,FIDED}");
 	}
 
 	/* (non-Javadoc)
@@ -44,11 +47,10 @@ public class GrinderModuleRunnable extends PepperModuleRunnable {
 	@Override
 	protected StepDesc createManipulatorParams() {
 		StepDesc stepDesc = new StepDesc();
-		stepDesc.setCorpusDesc(new CorpusDesc());
-		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(Platform.getLocation().toFile().getAbsolutePath() + "/annis-files"));
 		stepDesc.setName("OrderRelationAdder");
 		stepDesc.setVersion("1.0.2.SNAPSHOT");
-		stepDesc.setModuleType(MODULE_TYPE.EXPORTER);
+		stepDesc.setModuleType(MODULE_TYPE.MANIPULATOR);
+		stepDesc.setProps(orderRelationAdderProps);
 		return (stepDesc);
 	}
 

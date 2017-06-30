@@ -74,6 +74,7 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 		String jobId = pepper.createJob();
 		PepperJob pepperJob = pepper.getJob(jobId);
 		pepperJob.addStepDesc(createImporterParams());
+		pepperJob.addStepDesc(createManipulatorParams());
 		pepperJob.addStepDesc(createExporterParams());
 		pepperJob.convert(); // TODO: CONVERT FROM
 	}
