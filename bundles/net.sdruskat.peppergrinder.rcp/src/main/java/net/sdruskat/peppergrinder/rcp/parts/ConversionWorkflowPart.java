@@ -6,13 +6,11 @@ import javax.inject.Inject;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-
 import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunner;
 import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunnerBuilder;
 
@@ -44,14 +42,16 @@ public class ConversionWorkflowPart {
 		Label lblSelection = new Label(composite, SWT.NONE);
 		lblSelection.setText("Current selection:");
 		
-		Label lblNewLabel = new Label(composite, SWT.NONE);
-		lblNewLabel.setText("--");
+		Label lblSelectedPath = new Label(composite, SWT.NONE);
+		lblSelectedPath.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+		lblSelectedPath.setText("--");
 		
 		Button btnBrowse = new Button(composite, SWT.NONE);
+		btnBrowse.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 2, 1));
 		btnBrowse.setText("Browse");
-		new Label(composite, SWT.NONE);
 		
 		Button btnRun = new Button(composite, SWT.NONE);
+		btnRun.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 2, 1));
 		btnRun.setText("Run conversion");
 		btnRun.setEnabled(false);
 		new Label(composite, SWT.NONE);
@@ -63,6 +63,12 @@ public class ConversionWorkflowPart {
 				corpusDirectoryPath = dirDialog.open();
 				if (corpusDirectoryPath != null && !corpusDirectoryPath.isEmpty()) {
 					btnRun.setEnabled(true);
+					lblSelectedPath.setText(corpusDirectoryPath);
+					lblSelectedPath.requestLayout();
+					composite.requestLayout();
+					parent.requestLayout();
+					composite.requestLayout();
+					lblSelectedPath.requestLayout();
 				}
 			}
 		});

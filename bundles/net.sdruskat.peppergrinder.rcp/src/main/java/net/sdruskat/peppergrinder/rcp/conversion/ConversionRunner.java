@@ -3,7 +3,11 @@
  */
 package net.sdruskat.peppergrinder.rcp.conversion;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,6 +32,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
 import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperStarter;
+import net.sdruskat.peppergrinder.rcp.util.ZipCompressor;
 
 /**
  * // TODO Add description
@@ -115,7 +120,6 @@ public class ConversionRunner {
 	 * @return the pepper
 	 */
 	public final PepperConnector getPepper() {
-		System.out.println("PEPPER: " + pepper);
 		return pepper;
 	}
 
@@ -133,11 +137,29 @@ public class ConversionRunner {
 				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 
 				boolean outcome = moduleRunnable.get().booleanValue();
-				
-				System.out.println("OUTCOME: " + outcome);
-
+				String name = ((GrinderModuleRunnable) moduleRunnable).getName();
 				if (outcome) {
-//					writeDialogSettings();
+					List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"));
+					List<String> newLines = new ArrayList<>();
+					for (String l : lines) {
+						l = l.replace("$PLACEHOLDER-FOR-REAL-NAME$", name);
+						newLines.add(l);
+					}
+					StringBuilder lineBuilder = new StringBuilder();
+					for (String newLine : newLines) {
+						lineBuilder.append(newLine + "\n");
+					}
+					try {
+						Files.write(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"),
+								lineBuilder.toString().getBytes());
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+					ZipCompressor zipper = new ZipCompressor();
+					File zip = new File("./ANNIS-OUTPUT-ZIP/" + name + ".zip");
+					zipper.createZip("./ANNIS-OUTPUT/", zip.getAbsolutePath());
+//					zipper.zipDirectory(new File("./ANNIS-OUTPUT"), "./ANNIS-CORPUS/" + name + ".zip");
 				}
 
 				return outcome;

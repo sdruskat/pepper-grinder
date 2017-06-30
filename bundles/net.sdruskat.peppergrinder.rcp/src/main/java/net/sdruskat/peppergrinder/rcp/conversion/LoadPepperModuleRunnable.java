@@ -64,7 +64,6 @@ public class LoadPepperModuleRunnable implements IRunnableWithProgress{
 						
 						bundle = bundleContext.installBundle(bundleURI.toString());
 						moduleBundles.add(bundle);
-						System.out.println("\n\nINSTALLED " + bundle.getSymbolicName() + "\n\n");
 					}
 					catch (BundleException e) {
 //						log.debug("Could not install bundle {}!", bundleURI.toString());

@@ -1,0 +1,21 @@
+.nt::after {
+	content: ", ";
+}
+.nt:last-child:after {
+	content: " | "; 
+}
+
+div {
+  font-size: 1.5rem;
+}
+
+ruby {
+  display: inline-flex;
+  flex-direction: column-reverse;
+}
+
+rb, rt {
+  display: inline;
+  line-height: 1;
+  margin-right: 1.5rem;
+}
