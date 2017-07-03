@@ -301,10 +301,10 @@
                 </configuration>
               </execution>
               <!-- Copy the user doc Eclipse Help files from target/docbkx/eclipse to plugins/o.c-t.Pepper Grinder/doc/help -->
-              <execution>
-                <id>copy-eclipse-help</id>
+              <!--<execution>
+                <id>copy-eclipse-help</id> -->
                 <!-- PHASE: COMPILE -->
-                <phase>compile</phase>
+                <!--<phase>compile</phase>
                 <goals>
                   <goal>copy-resources</goal>
                 </goals>
@@ -319,7 +319,7 @@
                     </resource>
                   </resources>
                 </configuration>
-              </execution>
+              </execution>-->
             </executions>
           </plugin>
 
