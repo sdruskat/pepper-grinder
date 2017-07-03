@@ -242,7 +242,7 @@
                 </configuration>
               </execution>
               <!-- Fix Eclipse Help's toc.xml to point to correct path -->
-              <execution>
+              <!--<execution>
                 <id>fix-paths-in-toc.xml</id>
                 <phase>prepare-package</phase>
                 <goals>
@@ -254,7 +254,7 @@
                     <argument>${project.basedir}/../../bundles/net.sdruskat.peppergrinder.rcp/doc/help/toc.xml</argument>
                   </arguments>
                 </configuration>
-              </execution>
+              </execution>-->
             </executions>
           </plugin>
 
