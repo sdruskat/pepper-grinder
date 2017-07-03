@@ -128,7 +128,7 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 			}
 
 			// Start monitor
-			monitor.beginTask("Running ...", IProgressMonitor.UNKNOWN);
+			monitor.beginTask("Converting corpus ...", IProgressMonitor.UNKNOWN);
 			outcome = Boolean.FALSE;
 			try {
 				// Run module

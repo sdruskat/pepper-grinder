@@ -157,9 +157,7 @@ public class ConversionRunner {
 						e.printStackTrace();
 					}
 					ZipCompressor zipper = new ZipCompressor();
-					File zip = new File("./ANNIS-OUTPUT-ZIP/" + name + ".zip");
-					zipper.createZip("./ANNIS-OUTPUT/", zip.getAbsolutePath());
-//					zipper.zipDirectory(new File("./ANNIS-OUTPUT"), "./ANNIS-CORPUS/" + name + ".zip");
+					zipper.zipDirectory(new File("./ANNIS-OUTPUT"), "./ANNIS-OUTPUT/" + name + ".zip");
 				}
 
 				return outcome;
