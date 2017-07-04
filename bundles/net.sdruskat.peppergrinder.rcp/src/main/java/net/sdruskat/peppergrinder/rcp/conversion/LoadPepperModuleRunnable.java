@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2017 Stephan Druskat
+ * Exploitation rights for this version belong exclusively to Universität Hamburg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Stephan Druskat - initial API and implementation
+ *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp.conversion;
 
 import java.io.File;
@@ -19,32 +38,38 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
 
+import net.sdruskat.peppergrinder.rcp.LogManager;
 import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperConfiguration;
 
-public class LoadPepperModuleRunnable implements IRunnableWithProgress{
+/**
+ * A {@link Runnable} that installs and starts the Pepper OSGi modules
+ * configured for a conversion process.
+ *
+ * @author Stephan Druskat <[mail@sdruskat.net](mailto:mail@sdruskat.net)>
+ * 
+ */
+public class LoadPepperModuleRunnable implements IRunnableWithProgress {
 
-	/** 
-	 * Defines a static logger variable so that it references the {@link org.apache.logging.log4j.Logger} instance named "LoadPepperModuleRunnable".
-	 */
-//	private static final Logger log = LogManager.getLogger(LoadPepperModuleRunnable.class);
+	private static final LogManager log = LogManager.INSTANCE;
 	private PepperConnector pepper;
-	
 
 	/**
-	 * @param pepper The {@link Pepper} instance to use
+	 * @param pepper
+	 *            The {@link Pepper} instance to use
 	 */
 	public LoadPepperModuleRunnable(PepperConnector pepper) {
 		this.pepper = pepper;
 	}
 
-
-	/* 
-	 * @copydoc @see org.eclipse.jface.operation.IRunnableWithProgress#run(org.eclipse.core.runtime.IProgressMonitor)
+	/*
+	 * @copydoc @see
+	 * org.eclipse.jface.operation.IRunnableWithProgress#run(org.eclipse.core.
+	 * runtime.IProgressMonitor)
 	 */
 	@Override
 	public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 		monitor.beginTask("Loading available Pepper modules ...", IProgressMonitor.UNKNOWN);
-//		log.info("Loading Pepper modules.");
+		log.info("Loading Pepper modules.");
 		// Load the configuration
 		GrinderPepperConfiguration configuration = (GrinderPepperConfiguration) getPepper().getConfiguration();
 		configuration.load();
@@ -59,14 +84,13 @@ public class LoadPepperModuleRunnable implements IRunnableWithProgress{
 					URI bundleURI = bundleJar.toURI();
 					Bundle bundle = null;
 					try {
-						BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass())
-                        .getBundleContext();
-						
+						BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+
 						bundle = bundleContext.installBundle(bundleURI.toString());
 						moduleBundles.add(bundle);
 					}
 					catch (BundleException e) {
-//						log.debug("Could not install bundle {}!", bundleURI.toString());
+						log.warn("Could not install bundle " + bundleURI.toString() + "!");
 					}
 				}
 			}
@@ -77,14 +101,13 @@ public class LoadPepperModuleRunnable implements IRunnableWithProgress{
 						bundle.start();
 					}
 					catch (BundleException e) {
-//						log.debug("Could not start bundle {}!", bundle.getSymbolicName());
+						log.warn("Could not start bundle " + bundle.getSymbolicName() + "!");
 					}
 				}
 			}
 		}
-		
-	}
 
+	}
 
 	/**
 	 * @return the pepper
@@ -92,5 +115,5 @@ public class LoadPepperModuleRunnable implements IRunnableWithProgress{
 	private PepperConnector getPepper() {
 		return pepper;
 	}
-	
+
 }
