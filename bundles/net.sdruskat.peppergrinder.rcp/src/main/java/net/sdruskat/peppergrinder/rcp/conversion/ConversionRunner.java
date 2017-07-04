@@ -78,6 +78,11 @@ public class ConversionRunner {
 		init();
 	}
 
+	/**
+	 * Initializes the runner by creating and starting a new
+	 * Pepper instance and getting the available 
+	 * properties and modules.
+	 */
 	private void init() {
 		GrinderPepperStarter pepperStarter = new GrinderPepperStarter();
 		pepperStarter.startPepper();
