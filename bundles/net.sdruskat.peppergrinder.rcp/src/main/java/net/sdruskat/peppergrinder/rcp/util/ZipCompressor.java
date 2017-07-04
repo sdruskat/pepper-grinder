@@ -29,8 +29,7 @@ import java.util.Stack;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.sdruskat.peppergrinder.rcp.LogManager;
 
 /**
  * A utility class providing a method to recursively compress
@@ -41,8 +40,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ZipCompressor {
 	
-	private final static Logger log = LoggerFactory.getLogger(ZipCompressor.class);
-
+	private static final LogManager log = LogManager.INSTANCE;
+	
 	/**
 	 * Static method compiling a cross-platform zip file 
 	 * from the contents of a {@link File} - usually a 
@@ -138,7 +137,7 @@ public class ZipCompressor {
 							list.add(current + File.separator + fileString);
 						}
 						else {
-							log.error("Cannot read the file '{}'.", file.getPath());
+							log.error("Cannot read the file '" + file.getPath() + "'.");
 							throw new IOException();
 						}
 					}
@@ -147,7 +146,7 @@ public class ZipCompressor {
 						stack.push(current + File.separator + file.getName());
 					}
 					else {
-						log.error("Entry '{}' is neither file nor directory!", file.getPath());
+						log.error("Entry '" + file.getPath() + "' is neither file nor directory!");
 						throw new IOException();
 					}
 				}
