@@ -3,7 +3,7 @@ title:  Pepper Grinder User Guide
 date:
 - Stephan Druskat
 abstract: |
-	Pepper Grinder (TraCES Edition) provides a graphical user interface for [Pepper, a conversion framework for linguistic data](http://corpus-tools.org/pepper) and
+	Pepper Grinder (TraCES Edition) provides a graphical user interface for [Pepper, a conversion framework for linguistic data](http://corpus-tools.org/pepper), and
 	allows conversion from the custom TraCES JSON format to the ANNIS format.
 geometry: margin=1in
 ...
