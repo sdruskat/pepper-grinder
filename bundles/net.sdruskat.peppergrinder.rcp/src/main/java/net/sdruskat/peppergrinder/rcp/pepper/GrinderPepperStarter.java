@@ -1,48 +1,77 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2017 Stephan Druskat
+ * Exploitation rights for this version belong exclusively to Universität Hamburg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Stephan Druskat - initial API and implementation
+ *******************************************************************************/
 /**
  * 
  */
 package net.sdruskat.peppergrinder.rcp.pepper;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 import org.corpus_tools.pepper.common.Pepper;
 import org.corpus_tools.pepper.connectors.PepperConnector;
 
+import net.sdruskat.peppergrinder.rcp.LogManager;
+
 /**
- * // TODO Add description
+ * A class that starts and initializes a Pepper instance.
  *
  * @author Stephan Druskat <[mail@sdruskat.net](mailto:mail@sdruskat.net)>
  * 
  */
 public class GrinderPepperStarter {
 	
+	private final static LogManager log = LogManager.INSTANCE;
+	
 	private PepperConnector pepper = null;
 	
+	/**
+	 * Configures and sets a new Pepper instance, 
+	 * i.e., an instance of {@link GrinderPepperOSGiConnector}.
+	 * 
+	 */
 	public void startPepper() {
 		GrinderPepperOSGiConnector pepper = null;
 		GrinderPepperConfiguration pepperProps = null;
 		
 		pepperProps = new GrinderPepperConfiguration();
-//		log.trace("Loading Pepper properties via the object {}.", pepperProps);
+		log.info("Loading Pepper properties via the object " + pepperProps + ".");
 		pepperProps.load();
 		
 		pepper = new GrinderPepperOSGiConnector();
-//		log.trace("Setting the Pepper properties ({}) as configuration in the {} object {}.", pepperProps, AtomicPepperOSGiConnector.class.getName(), pepper);
 		pepper.setConfiguration(pepperProps);
 		
 		setPepper(pepper);
 	}
 	
-	public void startPepperAndBridgeOSGi() { // NO_UCD (unused code)
+	/**
+	 * Configures and sets a new Pepper instance, 
+	 * i.e., an instance of {@link GrinderPepperOSGiConnector}
+	 * and bridges it to the OSGi platform.
+	 */
+	public void startPepperAndBridgeOSGi() {
 		GrinderPepperOSGiConnector pepper = null;
 		GrinderPepperConfiguration pepperProps = null;
 		
 		pepperProps = new GrinderPepperConfiguration();
-//		log.trace("Loading Pepper properties via the object {}.", pepperProps);
+		log.info("Loading Pepper properties via the object " + pepperProps + ".");
 		pepperProps.load();
 		
 		pepper = new GrinderPepperOSGiConnector();
-//		log.trace("Setting the Pepper properties ({}) as configuration in the {} object {}.", pepperProps, AtomicPepperOSGiConnector.class.getName(), pepper);
 		pepper.setConfiguration(pepperProps);
 		
 		pepper.addSharedPackage("org.corpus_tools.salt", "3");
@@ -73,8 +102,8 @@ public class GrinderPepperStarter {
 	}
 
 	/**
-	 * Passes the call to an instance of {@link AtomicPepperOSGiConnector},
-	 * which in turn instantiates a {@link AtomicMavenAccessor}, passing
+	 * Passes the call to an instance of {@link GrinderPepperOSGiConnector},
+	 * which in turn instantiates a {@link GrinderMavenAccessor}, passing
 	 * itself as argument. Must be called to be able to resolve Maven
 	 * dependencies for modules, etc.
 	 *
