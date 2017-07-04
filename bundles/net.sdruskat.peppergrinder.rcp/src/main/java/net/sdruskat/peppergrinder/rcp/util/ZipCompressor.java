@@ -1,156 +1,159 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2017 Stephan Druskat
+ * Exploitation rights for this version belong exclusively to Universität Hamburg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Stephan Druskat - initial API and implementation
+ *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp.util;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * A utility class providing a method to recursively compress
+ * a directory into a zip archive.
+ *
+ * @author Stephan Druskat <[mail@sdruskat.net](mailto:mail@sdruskat.net)>
+ * 
+ */
 public class ZipCompressor {
-
-	List<String> filesListInDir = new ArrayList<String>();
-
-	public void zipDirectory(File dir, String zipDirName) throws IOException {
-        	/* 
-        	 * Populate a complete list of files in the 
-        	 * directory and its subdirectories
-        	 */
-            populateFilesList(dir);
-            // Create tmp dir and zip file to do compression
-            File tmpZip = new File("./tmp/tmpZip.zip");
-            tmpZip.getParentFile().mkdirs();
-            tmpZip.createNewFile();
-            //now zip files one by one
-            //create ZipOutputStream to write to the zip file
-            FileOutputStream fos = new FileOutputStream(tmpZip);
-            ZipOutputStream zos = new ZipOutputStream(fos);
-            for(String filePath : filesListInDir){
-                System.out.println("Zipping "+filePath);
-                //for ZipEntry we need to keep only relative file path, so we used substring on absolute path
-                ZipEntry ze = new ZipEntry(filePath.substring(dir.getAbsolutePath().length()+1, filePath.length()));
-                zos.putNextEntry(ze);
-                //read the file and write to ZipOutputStream
-                FileInputStream fis = new FileInputStream(filePath);
-                byte[] buffer = new byte[1024];
-                int len;
-                while ((len = fis.read(buffer)) > 0) {
-                    zos.write(buffer, 0, len);
-                }
-                zos.closeEntry();
-                fis.close();
-            }
-            zos.close();
-            fos.close();
-        // Copy tmp zip and remove tmp
-        // Create zip file
-        File targetZip = new File(zipDirName);
-        // Not nececssary, but in case target path is changed, created parent dirs anyway
-        targetZip.getParentFile().mkdirs();
-        targetZip.createNewFile();
-        String targetPath = targetZip.getAbsolutePath();
-        String tmpPath = tmpZip.getAbsolutePath();
-        Files.copy(Paths.get(tmpPath), Paths.get(targetPath), StandardCopyOption.REPLACE_EXISTING);
-        Files.delete(Paths.get(tmpPath));
-        Files.delete(Paths.get("./tmp"));
-    }
-
-	private void populateFilesList(File dir) throws IOException {
-		File[] files = dir.listFiles();
-		for (File file : files) {
-			if (file.isFile())
-				filesListInDir.add(file.getAbsolutePath());
-			else
-				populateFilesList(file);
-		}
-	}
-
-	// /**
-	// *
-	// * FIXME Write up differently This method creates the zip archive and then
-	// * goes through each file in the chosen directory, adding each one to the
-	// * archive. Note the use of the try with resource to avoid any finally
-	// * blocks.
-	// */
-	// public void createZip(String sourceDirectoryPath, String zipFilePath) {
-	// Path directory = Paths.get(sourceDirectoryPath);
-	//
-	// File zipFile = Paths.get(zipFilePath).toFile();
-	//
-	// try (ZipOutputStream zipStream = new ZipOutputStream(new
-	// FileOutputStream(zipFile))) {
-	//
-	// // FIXME Change comment traverse every file in the selected
-	// // directory and add them
-	// // to the zip file by calling addToZipFile(..)
-	// DirectoryStream<Path> dirStream = Files.newDirectoryStream(directory);
-	// dirStream.forEach(path -> addToZip(path, zipStream));
-	//
-	// }
-	// catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	
+	private final static Logger log = LoggerFactory.getLogger(ZipCompressor.class);
 
 	/**
-	 * FIXME Change
+	 * Static method compiling a cross-platform zip file 
+	 * from the contents of a {@link File} - usually a 
+	 * source directory (including the source directory 
+	 * file itself). The method works recursively, i.e., 
+	 * all subdirectories of the source directory and 
+	 * their contents are also compressed and added to 
+	 * the zip file.
 	 * 
-	 * Adds an extra file to the zip archive, copying in the created date and a
-	 * comment.
+	 * If the {@link File} parameter is a file rather
+	 * than a directory, the file will be compressed
+	 * and added to the zip file.
 	 * 
-	 * @param file
-	 *            file to be archived
-	 * @param zipStream
-	 *            archive to contain the file.
+	 * @param sourceDirectory The directory (or file) which will be compressed and added to the zip file.
+	 * @param zipFilePath A {@link String} representation of the target zip file path.
+	 * @throws IOException
 	 */
-	// private void addToZip(Path file, ZipOutputStream zipStream) {
-	// File inputFile = file.toFile();
-	// if (inputFile.isDirectory()) {
-	// createZip(inputFile.getAbsolutePath(), zipStream.g);
-	// }
-	// String inputFilePath = inputFile.getPath();
-	//
-	// // file.toFile().getp
-	// // try (FileInputStream inputStream = new
-	// // FileInputStream(inputFileName)) {
-	// //
-	// // // FIXME create a new ZipEntry, which is basically another file
-	// // // within the archive. We omit the path from the filename
-	// // ZipEntry entry = new ZipEntry(file.toFile().getName());
-	// //
-	// entry.setCreationTime(FileTime.fromMillis(file.toFile().lastModified()));
-	// // zipStream.putNextEntry(entry);
-	// //
-	// //
-	// // // Now we copy the existing file into the zip archive. To do
-	// // // this we write into the zip stream, the call to putNextEntry
-	// // // above prepared the stream, we now write the bytes for this
-	// // // entry. For another source such as an in memory array, you'd
-	// // // just change where you read the information from.
-	// // byte[] readBuffer = new byte[2048];
-	// // int amountRead;
-	// // int written = 0;
-	// //
-	// // while ((amountRead = inputStream.read(readBuffer)) > 0) {
-	// // zipStream.write(readBuffer, 0, amountRead);
-	// // written += amountRead;
-	// // }
-	// //
-	// //
-	// //
-	// // }
-	// // catch(IOException e) {
-	// // e.printStackTrace();
-	// // }
-	// }
+	public static void createZipFile(File sourceDirectory, String zipFilePath) throws IOException {
+		List<String> fileList = traverseDirectory(sourceDirectory);
+		ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(zipFilePath));
+
+		zipOut.setLevel(9);
+		zipOut.setComment("Pepper Grinder");
+
+		for (String fileName : fileList) {
+			File file = new File(sourceDirectory.getParent(), fileName);
+			String fileNameForZip = fileName;
+			/*
+			 * If the file separator is NOT the literal
+			 * '/', replace it with '/'. This is necessary
+			 * to make the zip file cross-platform
+			 * compatible, as if this is run on Windows,
+			 * the file separator is usually '\' which
+			 * can lead to nasty side-effects when unzipping
+			 * a Windows-created zip file on Unix-based
+			 * systems.
+			 */
+			if (File.separatorChar != '/') {
+				fileNameForZip = fileName.replace(File.separatorChar, '/');
+			}
+			ZipEntry zipEntry;
+			if (file.isFile()) {
+				zipEntry = new ZipEntry(fileNameForZip);
+				zipEntry.setTime(file.lastModified());
+				zipOut.putNextEntry(zipEntry);
+				FileInputStream fileIn = new FileInputStream(file);
+				byte[] buffer = new byte[4096];
+				for (int n; (n = fileIn.read(buffer)) > 0; /* Do nothing with n as it is not an iterator value */) {
+					zipOut.write(buffer, 0, n);
+				}
+				fileIn.close();
+			}
+			else {
+				zipEntry = new ZipEntry(fileNameForZip + '/');
+				zipEntry.setTime(file.lastModified());
+				zipOut.putNextEntry(zipEntry);
+			}
+		}
+		zipOut.close();
+	}
+
+	private static List<String> traverseDirectory(File directory) throws IOException {
+
+		Stack<String> stack = new Stack<String>();
+		List<String> list = new ArrayList<String>();
+
+		/* 
+		 * If the parameter is a file, add it to
+		 * the list as the only entry and return
+		 * the list. 
+		 */
+		if (directory.isFile()) {
+			if (directory.canRead()) {
+				list.add(directory.getName());
+			}
+			return list;
+		}
+
+		/* 
+		 * Traverse the directory and add the files to the list.
+		 */
+		String root = directory.getParent();
+		stack.push(directory.getName());
+		while (!stack.empty()) {
+			String current = (String) stack.pop();
+			File currentDirectory = new File(root, current);
+			String[] fileList = currentDirectory.list();
+			if (fileList != null) {
+				for (String fileString : fileList) {
+					File file = new File(currentDirectory, fileString);
+					if (file.isFile()) {
+						if (file.canRead()) {
+							list.add(current + File.separator + fileString);
+						}
+						else {
+							log.error("Cannot read the file '{}'.", file.getPath());
+							throw new IOException();
+						}
+					}
+					else if (file.isDirectory()) {
+						list.add(current + File.separator + fileString);
+						stack.push(current + File.separator + file.getName());
+					}
+					else {
+						log.error("Entry '{}' is neither file nor directory!", file.getPath());
+						throw new IOException();
+					}
+				}
+			}
+		}
+		return list;
+	}
 
 }
