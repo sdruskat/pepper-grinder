@@ -19,10 +19,8 @@
  *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp;
 
-import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleActivator; 
 import org.osgi.framework.BundleContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Activator for bundle `net.sdruskat.peppergrinder.rcp`.
@@ -32,9 +30,9 @@ import org.slf4j.LoggerFactory;
  */
 public class Activator implements BundleActivator {
 	
-	private final static Logger log = LoggerFactory.getLogger(Activator.class);
-
 	private static BundleContext context;
+	
+	private static final LogManager log = LogManager.INSTANCE;
 
 	static BundleContext getContext() {
 		return context;
@@ -46,7 +44,7 @@ public class Activator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
-		log.trace("Start bundle '{}'.", context.getBundle().getSymbolicName());
+		log.info("Start bundle " + Activator.context.getBundle().getSymbolicName() + ".");
 	}
 
 	/*
@@ -54,7 +52,7 @@ public class Activator implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
-		log.trace("Stop bundle '{}'.", context.getBundle().getSymbolicName());
+		log.info("Stop bundle " + Activator.context.getBundle().getSymbolicName() + ".");
 		Activator.context = null;
 	}
 
