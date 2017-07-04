@@ -22,7 +22,7 @@ Extract the ZIP archive to a destination of your choice.
 
 Run Pepper Grinder by double-clicking on the executable (`pepper-grinder` or `pepper-grinder.exe`, depending on the operating system you use).
 
-Using the *Browse* button, browse for a folder containing a corpus (cf. [#requirements] for details).
+Using the *Browse* button, browse for a folder containing a corpus (cf. [Requirements](#requirements) for details).
 Start the conversion process by clicking on *Run conversion*.
 
 Once the corpus has been converted (may take a few minutes), the folder "ANNIS-OUTPUT" will contain both the ANNIS source files as well as an archive of these file with the ending `.zip`. Use the ZIP file to upload the corpus to ANNIS.
