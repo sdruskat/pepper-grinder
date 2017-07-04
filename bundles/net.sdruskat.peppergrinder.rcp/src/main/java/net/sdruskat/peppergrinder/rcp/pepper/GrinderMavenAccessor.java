@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2017 Stephan Druskat
+ * Exploitation rights for this version belong exclusively to Universität Hamburg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Stephan Druskat - initial API and implementation
+ *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp.pepper;
 
 import java.io.BufferedReader;
@@ -98,12 +117,17 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
 
+import net.sdruskat.peppergrinder.rcp.LogManager;
+
+/**
+ * // TODO Add description
+ *
+ * @author Stephan Druskat <[mail@sdruskat.net](mailto:mail@sdruskat.net)>
+ * 
+ */
 public class GrinderMavenAccessor {
 
-	/**
-	 * Defines a static logger variable so that it references the {@link org.apache.logging.log4j.Logger} instance named "AtomicMavenAccessor".
-	 */
-//	private static final Logger log = LogManager.getLogger(AtomicMavenAccessor.class);
+	private static final LogManager log = LogManager.INSTANCE;
 
 	/** contains the path to the blacklist file. */
 	private static final String BLACKLIST_PATH = "./configuration/dependencies/blacklist.cfg";
@@ -173,7 +197,7 @@ public class GrinderMavenAccessor {
 			}
 		}
 		catch (IOException e) {
-//			log.warn("Failed to clean local repository.");
+			log.warn("Failed to clean local repository.");
 		}
 		init();
 		initDependencies();
@@ -199,7 +223,7 @@ public class GrinderMavenAccessor {
 				fR.close();
 			}
 			catch (IOException e) {
-//				log.debug("Could not read blacklist file.", e);
+				log.warn("Could not read blacklist file.");
 			}
 		}
 	}
@@ -218,7 +242,7 @@ public class GrinderMavenAccessor {
 //		getRepo("sonatype-snapshots", SONATYPE_SNAPSHOTS_REPO);
 
 		if (forbiddenFruits.isEmpty()) {
-//			log.info("Configuring update mechanism ...");
+			log.info("Configuring update mechanism ...");
 			/* maven access utils */
 			Artifact pepArt = new DefaultArtifact("org.corpus-tools", ARTIFACT_ID_PEPPER_PARENT, "pom", frameworkVersion);
 
@@ -248,7 +272,7 @@ public class GrinderMavenAccessor {
 
 			}
 			catch (DependencyCollectionException e) {
-//				log.warn("An error occured initializing the update mechanism. Please check your internet connection.", e);
+				log.warn("An error occured initializing the update mechanism. Please check your internet connection.");
 				return false;
 			}
 			session = null;
@@ -316,7 +340,7 @@ public class GrinderMavenAccessor {
 	 */
 	public boolean update(String groupId, String artifactId, String repositoryUrl, boolean isSnapshot, boolean ignoreFrameworkVersion, Bundle installedBundle) {
 		if (forbiddenFruits.isEmpty() && !initDependencies()) {
-//			log.warn("Update could not be performed, because the pepper dependencies could not be listed.");
+			log.warn("Update could not be performed, because the pepper dependencies could not be listed.");
 			return false;
 		}
 
@@ -380,7 +404,7 @@ public class GrinderMavenAccessor {
 
 					}
 					catch (ArtifactResolutionException e) {
-//						log.warn("Plugin version " + newestVersion + " could not be found in repository. Checking the next lower version ...");
+						log.warn("Plugin version " + newestVersion + " could not be found in repository. Checking the next lower version ...");
 					}
 				}
 			}
@@ -455,7 +479,7 @@ public class GrinderMavenAccessor {
 				}
 				VersionRange range = isCompatiblePlugin(parentVersion);
 				if (!ignoreFrameworkVersion && range != null) {
-//					log.info((new StringBuilder()).append("No update was performed because of a version incompatibility according to pepper-framework: ").append(newLine).append(artifactId).append(" only supports ").append(range.toString()).append(", but ").append(grinderPepperOSGiConnector.getFrameworkVersion()).append(" is installed!").append(newLine).append("You can make pepper ignore this by using \"update").append(isSnapshot ? " snapshot " : " ").append("iv ").append(artifactId).append("\"").toString());
+					log.info((new StringBuilder()).append("No update was performed because of a version incompatibility according to pepper-framework: ").append(newLine).append(artifactId).append(" only supports ").append(range.toString()).append(", but ").append(grinderPepperOSGiConnector.getFrameworkVersion()).append(" is installed!").append(newLine).append("You can make pepper ignore this by using \"update").append(isSnapshot ? " snapshot " : " ").append("iv ").append(artifactId).append("\"").toString());
 					return false;
 				}
 				allDependencies = cleanDependencies(allDependencies, session, parentVersion);
@@ -473,9 +497,9 @@ public class GrinderMavenAccessor {
 							installArtifacts.add(artifactResult.getArtifact());
 						}
 						catch (ArtifactResolutionException e) {
-//							log.warn("Artifact " + dependency.getArtifact().getArtifactId() + " could not be resolved. Dependency will not be installed.");
+							log.warn("Artifact " + dependency.getArtifact().getArtifactId() + " could not be resolved. Dependency will not be installed.");
 							if (!Boolean.parseBoolean(grinderPepperOSGiConnector.getPepperStarterConfiguration().getProperty("pepper.forceUpdate").toString())) {
-//								log.error("Artifact ".concat(artifact.getArtifactId()).concat(" will not be installed. Resolution of dependency ").concat(dependency.getArtifact().getArtifactId()).concat(" failed and \"force update\" is disabled in pepper.properties."));
+								log.error("Artifact ".concat(artifact.getArtifactId()).concat(" will not be installed. Resolution of dependency ").concat(dependency.getArtifact().getArtifactId()).concat(" failed and \"force update\" is disabled in pepper.properties."));
 								return false;
 							}
 						}
@@ -486,14 +510,14 @@ public class GrinderMavenAccessor {
 				for (int i = installArtifacts.size() - 1; i >= 0; i--) {
 					try {
 						installArtifact = installArtifacts.get(i);
-//						log.info("installing: " + installArtifact);
+						log.info("installing: " + installArtifact);
 						bundle = grinderPepperOSGiConnector.installAndCopy(installArtifact.getFile().toURI());
 						if (i != 0) {// the module itself must not be put on the blacklist
 							putOnBlacklist(installArtifact);
 						}
 						else if (installedBundle != null) {
 							grinderPepperOSGiConnector.remove(installedBundle.getSymbolicName());
-//							log.info("Successfully removed version ".concat(installedBundle.getVersion().toString()).concat(" of ").concat(artifactId));
+							log.info("Successfully removed version ".concat(installedBundle.getVersion().toString()).concat(" of ").concat(artifactId));
 						}
 						if (bundle != null) {
 							bundle.start();
@@ -551,7 +575,7 @@ public class GrinderMavenAccessor {
 			}
 		}
 		catch (InvalidVersionSpecificationException e) {
-//			log.error("Could not compare required framework version to running framework. Trying to perform update anyway...");
+			log.error("Could not compare required framework version to running framework. Trying to perform update anyway...");
 		}
 		return null;
 	}
@@ -592,7 +616,7 @@ public class GrinderMavenAccessor {
 			Bundle bundle = grinderPepperOSGiConnector.getBundle(artifact.getGroupId(), artifact.getArtifactId(), null);
 			STATUS status = bundle == null || !grinderPepperOSGiConnector.isSingleton(bundle) ? STATUS.OVERRIDABLE : STATUS.FINAL;
 			forbiddenFruits.add(artifact.toString().concat(DELIMITER).concat(status.toString()).concat(DELIMITER).concat(bundle == null ? "" : bundle.getSymbolicName()));
-//			log.debug("Put dependency on blacklist: ".concat(artifact.toString()));
+			log.info("Put dependency on blacklist: ".concat(artifact.toString()));
 		}
 	}
 
@@ -626,13 +650,13 @@ public class GrinderMavenAccessor {
 			fW.close();
 		}
 		catch (IOException e) {
-//			log.debug("Could not write blacklist file.");
+			log.warn("Could not write blacklist file.");
 		}
 
 	}
 
 	/**
-	 * @returns the Blacklist of already installed or forbidden dependencies
+	 * @return the Blacklist of already installed or forbidden dependencies
 	 */
 	public String getBlacklist() {
 		String lineSeparator = System.getProperty("line.separator");
@@ -692,13 +716,13 @@ public class GrinderMavenAccessor {
 				}
 				else {
 					forbiddenFruits.add(next.getArtifact().toString() + DELIMITER + STATUS.FINAL);
-//					log.debug("The following dependency was put on blacklist, because it equals a parent dependency: " + next.getArtifact().toString());
+					log.info("The following dependency was put on blacklist, because it equals a parent dependency: " + next.getArtifact().toString());
 				}
 			}
 			return newDeps;
 		}
 		catch (DependencyCollectionException e) {
-//			log.warn("Could not collect dependencies for parent. No dependencies will be installed.");
+			log.warn("Could not collect dependencies for parent. No dependencies will be installed.");
 		}
 		ArrayList<Dependency> retVal = new ArrayList<>();
 		return retVal;
