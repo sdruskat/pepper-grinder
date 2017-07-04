@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2017 Stephan Druskat
+ * Exploitation rights for this version belong exclusively to Universität Hamburg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Stephan Druskat - initial API and implementation
+ *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp.pepper;
 
 import java.io.File;
@@ -32,12 +51,19 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
 
+import net.sdruskat.peppergrinder.rcp.LogManager;
+
+/**
+ * An implementation of Pepper bridging the OSGi environments
+ * of Pepper Grinder's Eclipse runtime and the Pepper OSGi
+ * runtime.
+ *
+ * @author Stephan Druskat <[mail@sdruskat.net](mailto:mail@sdruskat.net)>
+ * 
+ */
 public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 	
-	/** 
-	 * Defines a static log variable so that it references the {@link org.apache.logging.log4j.Logger} instance named "AtomicPepperOSGiConnector".
-	 */
-//	private static final Logger log = LogManager.getLogger(AtomicPepperOSGiConnector.class);
+	private static final LogManager log = LogManager.INSTANCE;
 	
 	private GrinderPepperConfiguration properties = null;
 	
@@ -64,13 +90,13 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 	public void init() {
 		if (getGrinderPepperConfiguration().getPlugInPath() == null) {
 			PepperPropertyException e = new PepperPropertyException("Cannot start Pepper, because no plugin path is given for Pepper modules.");
-//			log.error("No plugin path given.", e);
+			log.error("No plugin path given.");
 			throw e;
 		}
 		File pluginPath = new File(getGrinderPepperConfiguration().getPlugInPath());
 		if (!pluginPath.exists()) {
 			PepperOSGiException e = new PepperOSGiException("Cannot load any plugins, since the configured path for plugins '" + pluginPath.getAbsolutePath() + "' does not exist. Please check the entry '" + PepperStarterConfiguration.PROP_PLUGIN_PATH + "' in the Pepper configuration file at '" + getConfiguration().getConfFolder().getAbsolutePath() + "'.");
-//			log.error("Plugin path does not exist!", e);
+			log.error("Plugin path does not exist!");
 			throw e;
 		}
 		try {
@@ -79,7 +105,7 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 			System.setProperty(PepperConfiguration.PROP_PEPPER_MODULE_RESOURCES, getGrinderPepperConfiguration().getPlugInPath());
 			setBundleContext(FrameworkUtil.getBundle(this.getClass()).getBundleContext());
 		} catch (Exception e) {
-//			log.error("OSGi environment could not be started: {}.", e.getMessage(), e);
+			log.error("OSGi environment could not be started: {Add exception details}.");
 			throw new PepperOSGiException("The OSGi environment could not have been started: " + e.getMessage(), e);
 		}
 		Bundle[] bundles = FrameworkUtil.getBundle(this.getClass()).getBundleContext().getBundles();
@@ -92,7 +118,7 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 		}
 		
 		/* Original location of the call
-		 * maven = new AtomicMavenAccessor(this);
+		 * maven = new PepperGrinderMavenAccessor(this);
 		 * 
 		 * Kept for historical reasons.
 		 */
@@ -118,7 +144,7 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 			this.properties = (GrinderPepperConfiguration) configuration;
 		} else {
 			PepperConfigurationException e = new PepperConfigurationException("Cannot set the given configuration, since it is not of type '" + GrinderPepperConfiguration.class.getSimpleName() + "'.");
-//			log.error("Wrong Pepper configuration type!", e);
+			log.error("Wrong Pepper configuration type!");
 			throw e;
 		}
 	}
@@ -167,11 +193,11 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 			try {
 				bundle.start();
 			} catch (BundleException e) {
-//				log.warn("The bundle '" + bundle.getSymbolicName() + "-" + bundle.getVersion() + "' wasn't started correctly. This could cause other problems. For more details turn on log mode to debug and see log file. ", e);
+				log.warn("The bundle '" + bundle.getSymbolicName() + "-" + bundle.getVersion() + "' wasn't started correctly. This could cause other problems. For more details turn on log mode to debug and see log file. ");
 			}
 		}
 		if (bundle.getState() != Bundle.ACTIVE) {
-//			log.error("The bundle '" + bundle.getSymbolicName() + "-" + bundle.getVersion() + "' wasn't started correctly.");
+			log.error("The bundle '" + bundle.getSymbolicName() + "-" + bundle.getVersion() + "' wasn't started correctly.");
 		}
 	}
 
@@ -182,7 +208,7 @@ public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 	}
 	
 	/**
-	 * @return configuration as {@link AtomicPepperConfiguration}
+	 * @return configuration as {@link GrinderPepperConfiguration}
 	 **/
 	public GrinderPepperConfiguration getGrinderPepperConfiguration() {
 		return properties;
