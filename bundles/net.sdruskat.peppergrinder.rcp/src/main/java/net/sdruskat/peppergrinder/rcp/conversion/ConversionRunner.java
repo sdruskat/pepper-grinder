@@ -173,12 +173,15 @@ public class ConversionRunner {
 	 */
 	public boolean run() {
 		try {
+			log.info("Starting conversion process");
 			PepperModuleRunnable moduleRunnable = createModuleRunnable(/* project, */true);
 			new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 
 			boolean outcome = moduleRunnable.get().booleanValue();
+			log.info("Conversion has run successfully: " + outcome + ".");
 			String name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
 			if (outcome) {
+				log.info("Configuring ANNIS resolver_vis_map for corpus " + name + ".");
 				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"));
 				List<String> newLines = new ArrayList<>();
 				for (String l : lines) {
@@ -190,12 +193,17 @@ public class ConversionRunner {
 					lineBuilder.append(newLine + "\n");
 				}
 				try {
+					log.info("Writing new resolver_vis_map for corpus " + name + " to file.");
 					Files.write(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
 				}
 				catch (IOException e) {
 					e.printStackTrace();
 				}
+				log.info("Creating zip file for corpus " + name + ".");
 				ZipCompressor.createZipFile(new File("./ANNIS-OUTPUT"), "./ANNIS-OUTPUT/" + name + ".zip");
+				log.info("Conversion finished successfully.");
+				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + name + "\" finished successfully.\n\n"
+						+ "The ANNIS files are located in the folder './ANNIS-OUTPUT'.");
 			}
 			return outcome;
 
