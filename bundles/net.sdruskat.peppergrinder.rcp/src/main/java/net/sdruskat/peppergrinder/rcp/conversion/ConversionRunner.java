@@ -172,7 +172,7 @@ public class ConversionRunner {
 			new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 
 			boolean outcome = moduleRunnable.get().booleanValue();
-			String name = ((GrinderModuleRunnable) moduleRunnable).getName();
+			String name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
 			if (outcome) {
 				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"));
 				List<String> newLines = new ArrayList<>();
@@ -206,7 +206,7 @@ public class ConversionRunner {
 	}
 
 	private PepperModuleRunnable createModuleRunnable(boolean cancelable) {
-		return new GrinderModuleRunnable(cancelable, getPepper(), this.corpusDirectoryPath);
+		return new TraCESToANNISModuleRunnable(cancelable, getPepper(), this.corpusDirectoryPath);
 	}
 
 }
