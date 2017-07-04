@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Activator implements BundleActivator {
 	
-	Logger log = LoggerFactory.getLogger(Activator.class);
+	private final static Logger log = LoggerFactory.getLogger(Activator.class);
 
 	private static BundleContext context;
 
