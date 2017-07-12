@@ -26,8 +26,6 @@
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.handler.aboutCommand" contributionURI="bundleclass://net.sdruskat.peppergrinder.rcp/net.sdruskat.peppergrinder.rcp.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
-    <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.keybinding.m1o" keySequence="M1+O"/>
-    <bindings xmi:id="_6wlLhcgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.keybinding.m1s" keySequence="M1+S"/>
     <bindings xmi:id="_6wlLiMgZEeSyMNYR5xypkQ" elementId="net.sdruskat.peppergrinder.rcp.keybinding.m1a" keySequence="M1+A" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   </bindingTables>
   <rootContext xmi:id="_6wlLecgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
