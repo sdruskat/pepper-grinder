@@ -70,6 +70,8 @@ location "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052021185
 	org.junit
 	org.mockito [1.9.5, 2.0.0)
 	org.hamcrest
+	ch.qos.logback.classic
+	ch.qos.logback.core
 }
 
 location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" {
