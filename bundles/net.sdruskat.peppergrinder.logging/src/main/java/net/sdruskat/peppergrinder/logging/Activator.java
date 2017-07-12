@@ -34,10 +34,7 @@ public class Activator implements BundleActivator {
 		JoranConfigurator jc = new JoranConfigurator();
 		jc.setContext(context);
 		context.reset();
-
-		// this assumes that the logback.xml file is in the root of the bundle.
 		URL logbackConfigFileUrl = new File("logback.xml").toURI().toURL();
-		System.out.println("\n\nURL is NULL? " + logbackConfigFileUrl + "\n\n");
 		jc.doConfigure(logbackConfigFileUrl.openStream());
 	}
 
