@@ -24,8 +24,8 @@ package net.sdruskat.peppergrinder.rcp.pepper;
 
 import org.corpus_tools.pepper.common.Pepper;
 import org.corpus_tools.pepper.connectors.PepperConnector;
-
-import net.sdruskat.peppergrinder.rcp.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A class that starts and initializes a Pepper instance.
@@ -35,7 +35,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class GrinderPepperStarter {
 	
-	private final static LogManager log = LogManager.INSTANCE;
+	private final static Logger log = LoggerFactory.getLogger(GrinderPepperStarter.class);
 	
 	private PepperConnector pepper = null;
 	

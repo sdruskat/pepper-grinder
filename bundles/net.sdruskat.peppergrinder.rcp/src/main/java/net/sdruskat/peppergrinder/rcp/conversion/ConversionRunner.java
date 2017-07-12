@@ -41,8 +41,9 @@ import org.corpus_tools.pepper.modules.PepperModuleProperties;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.widgets.Display;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.sdruskat.peppergrinder.rcp.LogManager;
 import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperStarter;
 import net.sdruskat.peppergrinder.rcp.util.ZipCompressor;
 
@@ -54,7 +55,7 @@ import net.sdruskat.peppergrinder.rcp.util.ZipCompressor;
  */
 public class ConversionRunner {
 
-	private static LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(ConversionRunner.class);
 
 	protected PepperConnector pepper;
 

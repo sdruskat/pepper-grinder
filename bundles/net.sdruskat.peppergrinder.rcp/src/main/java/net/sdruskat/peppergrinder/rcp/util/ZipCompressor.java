@@ -29,7 +29,8 @@ import java.util.Stack;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import net.sdruskat.peppergrinder.rcp.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A utility class providing a method to recursively compress
@@ -40,7 +41,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class ZipCompressor {
 	
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(ZipCompressor.class);
 	
 	/**
 	 * Static method compiling a cross-platform zip file 

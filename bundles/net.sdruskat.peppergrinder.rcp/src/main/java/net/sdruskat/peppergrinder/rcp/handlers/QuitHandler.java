@@ -23,8 +23,8 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
-
-import net.sdruskat.peppergrinder.rcp.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles closing of the workbench.
@@ -34,7 +34,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class QuitHandler {
 	
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(QuitHandler.class);
 	
 	/**
 	 * Closes the workbench if prompted user agrees via dialog.

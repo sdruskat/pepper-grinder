@@ -50,8 +50,8 @@ import org.corpus_tools.pepper.exceptions.PepperConfigurationException;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
-
-import net.sdruskat.peppergrinder.rcp.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An implementation of Pepper bridging the OSGi environments
@@ -63,7 +63,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class GrinderPepperOSGiConnector extends PepperOSGiConnector {
 	
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(GrinderPepperOSGiConnector.class);
 	
 	private GrinderPepperConfiguration properties = null;
 	

@@ -21,6 +21,8 @@ package net.sdruskat.peppergrinder.rcp;
 
 import org.osgi.framework.BundleActivator; 
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Activator for bundle `net.sdruskat.peppergrinder.rcp`.
@@ -32,7 +34,7 @@ public class Activator implements BundleActivator {
 	
 	private static BundleContext context;
 	
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(Activator.class);
 
 	static BundleContext getContext() {
 		return context;

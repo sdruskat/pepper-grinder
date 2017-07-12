@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 import org.corpus_tools.pepper.common.Pepper;
 import org.corpus_tools.pepper.connectors.PepperConnector;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -37,8 +35,9 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.sdruskat.peppergrinder.rcp.LogManager;
 import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperConfiguration;
 
 /**
@@ -50,7 +49,7 @@ import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperConfiguration;
  */
 public class LoadPepperModuleRunnable implements IRunnableWithProgress {
 
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(LoadPepperModuleRunnable.class);
 	private PepperConnector pepper;
 
 	/**

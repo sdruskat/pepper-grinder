@@ -33,10 +33,10 @@ import org.corpus_tools.pepper.common.PepperConfiguration;
 import org.corpus_tools.pepper.common.PepperUtil;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Splitter;
-
-import net.sdruskat.peppergrinder.rcp.LogManager;
 
 /**
  * Represents a configuration setup for Pepper suitable for Pepper Grinder.
@@ -46,7 +46,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class GrinderPepperConfiguration extends PepperConfiguration {
 
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(GrinderPepperConfiguration.class);
 
 	private static final long serialVersionUID = 1L;
 	/** Folder containing configuration files for Pepper */

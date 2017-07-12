@@ -41,8 +41,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 import org.apache.maven.repository.internal.DefaultArtifactDescriptorReader;
 import org.apache.maven.repository.internal.DefaultVersionRangeResolver;
 import org.apache.maven.repository.internal.DefaultVersionResolver;
@@ -113,11 +111,11 @@ import org.eclipse.aether.version.VersionRange;
 import org.eclipse.aether.version.VersionScheme;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
-
-import net.sdruskat.peppergrinder.rcp.LogManager;
 
 /**
  * // TODO Add description
@@ -127,7 +125,7 @@ import net.sdruskat.peppergrinder.rcp.LogManager;
  */
 public class GrinderMavenAccessor {
 
-	private static final LogManager log = LogManager.INSTANCE;
+	private static final Logger log = LoggerFactory.getLogger(GrinderMavenAccessor.class);
 
 	/** contains the path to the blacklist file. */
 	private static final String BLACKLIST_PATH = "./configuration/dependencies/blacklist.cfg";
