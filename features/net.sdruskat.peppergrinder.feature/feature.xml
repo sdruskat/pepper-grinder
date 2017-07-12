@@ -41,12 +41,56 @@
       <import plugin="org.eclipse.aether.transport.http" version="1.0.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.aether.util" version="1.0.2" match="greaterOrEqual"/>
       <import plugin="org.codehaus.plexus.utils" version="3.0.20" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.e4.core.services"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="ch.qos.logback.classic" version="1.0.7" match="greaterOrEqual"/>
+      <import plugin="ch.qos.logback.core" version="1.0.7" match="greaterOrEqual"/>
+      <import plugin="org.slf4j.api" version="1.7.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="org.eclipse.osgi.services"/>
+      <import plugin="org.eclipse.e4.core.di.annotations"/>
+      <import plugin="org.eclipse.e4.core.di.extensions"/>
    </requires>
 
    <plugin
          id="net.sdruskat.peppergrinder.rcp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sdruskat.peppergrinder.logging"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="ch.qos.logback.classic"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="ch.qos.logback.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="ch.qos.logback.slf4j"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.slf4j.api"
          download-size="0"
          install-size="0"
          version="0.0.0"

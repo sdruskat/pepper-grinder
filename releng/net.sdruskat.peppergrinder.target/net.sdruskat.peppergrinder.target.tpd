@@ -72,6 +72,7 @@ location "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052021185
 	org.hamcrest
 	ch.qos.logback.classic
 	ch.qos.logback.core
+	ch.qos.logback.slf4j
 }
 
 location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" {
