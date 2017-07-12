@@ -79,3 +79,11 @@ location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/"
 	org.eclipse.e4.tools.spy
 	org.eclipse.e4.tools.model.spy
 }
+
+location "http://build-artifacts.wetransform.to/p2/slf4jplus/import"  {
+	de.fhg.igd.slf4jplus
+	de.fhg.igd.slf4jplus.logback
+	de.fhg.igd.slf4jplus.logback.appender
+	de.fhg.igd.slf4jplus.logback.observer
+	de.fhg.igd.slf4jplus.ui.errorlog
+}
