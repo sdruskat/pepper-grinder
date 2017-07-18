@@ -118,9 +118,9 @@ public class ConversionWorkflowPart {
 				}
 				else {
 					String failedDocs = runner.getFailedDocuments().stream()
-					     .map(name -> name)
+					     .map(name -> "- " + name)
 					     .collect(Collectors.joining("\n"));
-					MessageDialog.openError(Display.getDefault().getActiveShell(), "Conversion error", "The following documents could not be converted successfully. Please check the log files for error messages.\n" + failedDocs);
+					MessageDialog.openError(Display.getDefault().getActiveShell(), "Conversion error", "The following documents could not be converted successfully. Please check the log files for error messages.\n\n" + failedDocs);
 				}
 				
 			}
