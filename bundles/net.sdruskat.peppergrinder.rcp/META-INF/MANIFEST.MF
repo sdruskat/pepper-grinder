@@ -30,7 +30,8 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.codehaus.plexus.utils;bundle-version="3.0.20",
  org.eclipse.emf.common,
  org.eclipse.e4.core.services,
- org.eclipse.ui
+ org.eclipse.ui,
+ org.corpus-tools.salt-api
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.slf4j
