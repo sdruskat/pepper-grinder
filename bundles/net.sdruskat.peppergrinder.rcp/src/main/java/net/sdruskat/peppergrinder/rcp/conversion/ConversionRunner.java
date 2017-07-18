@@ -67,6 +67,10 @@ public class ConversionRunner {
 
 	private List<PepperModuleDesc> importerModules;
 
+	private String name;
+
+	private List<String> failedDocuments;
+
 	/**
 	 * Constructor setting the directory path of the corpus to import in the
 	 * conversion process and initializes this instance of
@@ -180,7 +184,7 @@ public class ConversionRunner {
 
 			boolean outcome = moduleRunnable.get().booleanValue();
 			log.info("Conversion has run successfully: " + outcome + ".");
-			String name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
+			name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
 			if (outcome) {
 				log.info("Configuring ANNIS resolver_vis_map for corpus " + name + ".");
 				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"));
@@ -199,14 +203,19 @@ public class ConversionRunner {
 				}
 				catch (IOException e) {
 					e.printStackTrace();
+					return false;
 				}
 				log.info("Creating zip file for corpus " + name + ".");
 				ZipCompressor.createZipFile(new File("./ANNIS-OUTPUT"), "./ANNIS-OUTPUT/" + name + ".zip");
 				log.info("Conversion finished successfully.");
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + name + "\" finished successfully.\n\n"
-						+ "The ANNIS files are located in the folder './ANNIS-OUTPUT'.");
+				return true;
 			}
-			return outcome;
+			else {
+				failedDocuments = moduleRunnable.getFailedDocuments();
+				return false;
+			}
+			
+			
 
 		}
 		catch (CancellationException X) {
@@ -221,6 +230,20 @@ public class ConversionRunner {
 
 	private PepperModuleRunnable createModuleRunnable(boolean cancelable) {
 		return new TraCESToANNISModuleRunnable(cancelable, getPepper(), this.corpusDirectoryPath);
+	}
+
+	/**
+	 * @return the name
+	 */
+	public final String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the failedDocuments
+	 */
+	public final List<String> getFailedDocuments() {
+		return failedDocuments;
 	}
 
 }

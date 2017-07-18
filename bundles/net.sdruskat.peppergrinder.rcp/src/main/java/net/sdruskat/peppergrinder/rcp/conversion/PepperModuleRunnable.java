@@ -21,6 +21,8 @@ package net.sdruskat.peppergrinder.rcp.conversion;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -31,16 +33,21 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.corpus_tools.pepper.common.DOCUMENT_STATUS;
 import org.corpus_tools.pepper.common.Pepper;
 import org.corpus_tools.pepper.common.PepperJob;
 import org.corpus_tools.pepper.common.StepDesc;
 import org.corpus_tools.pepper.connectors.PepperConnector;
+import org.corpus_tools.pepper.core.PepperJobImpl;
+import org.corpus_tools.pepper.modules.DocumentController;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A {@link Runnable} for Pepper modules.
@@ -50,6 +57,8 @@ import org.eclipse.swt.widgets.Display;
  */
 public abstract class PepperModuleRunnable implements IRunnableWithProgress, Future<Boolean> {
 	
+	private static final Logger log = LoggerFactory.getLogger(PepperModuleRunnable.class);
+	
 	protected static final AtomicInteger threadCounter = new AtomicInteger();
 
 	protected final boolean cancelable;
@@ -57,7 +66,7 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 	protected final Object cancelLock = new Object();
 
 	protected Semaphore semaphore = new Semaphore(0);
-	protected Boolean outcome = Boolean.FALSE;
+	protected Boolean outcome = Boolean.TRUE;
 	protected Throwable throwable = null;
 	protected volatile boolean cancelled = false;
 	protected volatile boolean done = false;
@@ -67,6 +76,8 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 	private PepperConnector pepper;
 
 	protected String corpusDirectoryPath;
+
+	private List<String> failedDocuments;
 
 	/**
 	 * @param pepperWizard
@@ -102,6 +113,19 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 		pepperJob.addStepDesc(createManipulatorParams());
 		pepperJob.addStepDesc(createExporterParams());
 		pepperJob.convert(); // TODO: CONVERT FROM
+		if (pepperJob instanceof PepperJobImpl) {
+			PepperJobImpl pji = (PepperJobImpl) pepperJob;
+			List<DocumentController> docCtrls = pji.getDocumentControllers();
+			failedDocuments = new ArrayList<>();
+			for (DocumentController c : pji.getDocumentControllers()) {
+				if (c.getGlobalStatus() == DOCUMENT_STATUS.DELETED) {
+					outcome = false;
+					failedDocuments.add(c.getDocument().getName());
+					log.error("Document {} failed to convert successfully.", c.getDocument().getName());
+				}
+			}
+				
+		}
 	}
 
 	/*
@@ -154,7 +178,7 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 
 			// Start monitor
 			monitor.beginTask("Converting corpus ...", IProgressMonitor.UNKNOWN);
-			outcome = Boolean.FALSE;
+//			outcome = Boolean.FALSE;
 			try {
 				// Run module
 				moduleThread.start();
@@ -175,8 +199,7 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 						}
 					}
 				}
-
-				outcome = Boolean.TRUE;
+//				outcome = Boolean.TRUE;
 			}
 			finally {
 				// Stop monitor
@@ -306,6 +329,13 @@ public abstract class PepperModuleRunnable implements IRunnableWithProgress, Fut
 				return null;
 			}
 		}
+	}
+
+	/**
+	 * @return the failedDocuments
+	 */
+	public final List<String> getFailedDocuments() {
+		return failedDocuments;
 	}
 
 }

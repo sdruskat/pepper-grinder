@@ -19,8 +19,11 @@
  *******************************************************************************/
 package net.sdruskat.peppergrinder.rcp.parts;
 
+import java.util.stream.Collectors;
+
 import javax.annotation.PostConstruct;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
@@ -29,6 +32,7 @@ import org.eclipse.swt.widgets.Label;
 
 import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunner;
 import net.sdruskat.peppergrinder.rcp.conversion.ConversionRunnerBuilder;
+import net.sdruskat.peppergrinder.rcp.conversion.TraCESToANNISModuleRunnable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -106,7 +110,19 @@ public class ConversionWorkflowPart {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				ConversionRunner runner = ConversionRunnerBuilder.withCorpusImportPath(corpusDirectoryPath).build();
-				runner.run();
+				boolean outcome = runner.run();
+				if (outcome) {
+					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + runner.getName() + "\" finished successfully.\n\n"
+							+ "The ANNIS files are located in the folder './ANNIS-OUTPUT'.");
+
+				}
+				else {
+					String failedDocs = runner.getFailedDocuments().stream()
+					     .map(name -> name)
+					     .collect(Collectors.joining("\n"));
+					MessageDialog.openError(Display.getDefault().getActiveShell(), "Conversion error", "The following documents could not be converted successfully. Please check the log files for error messages.\n" + failedDocs);
+				}
+				
 			}
 		});
 	}
