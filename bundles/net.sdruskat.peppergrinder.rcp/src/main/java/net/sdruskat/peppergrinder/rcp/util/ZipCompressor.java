@@ -84,7 +84,7 @@ public class ZipCompressor {
 				fileNameForZip = fileName.replace(File.separatorChar, '/');
 			}
 			ZipEntry zipEntry;
-			if (file.isFile()) {
+			if (!file.getName().endsWith(".zip") && file.isFile()) {
 				zipEntry = new ZipEntry(fileNameForZip);
 				zipEntry.setTime(file.lastModified());
 				zipOut.putNextEntry(zipEntry);
