@@ -26,7 +26,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -180,6 +182,11 @@ public class ConversionRunner {
 		try {
 			log.info("Starting conversion process");
 			PepperModuleRunnable moduleRunnable = createModuleRunnable(/* project, */true);
+			/* 
+			 * FIXME Include zipping in the runnable, otherwise
+			 * there'll be a temporal gap between the proress popup and the success
+			 * popup. 
+			 */
 			new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(false, true, moduleRunnable);
 
 			boolean outcome = moduleRunnable.get().booleanValue();
@@ -187,9 +194,26 @@ public class ConversionRunner {
 			name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
 			if (outcome) {
 				log.info("Configuring ANNIS resolver_vis_map for corpus " + name + ".");
-				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"));
+				Path resolverVisMapPath = Paths.get("./configuration/resolver_vis_map.annis");
+				Files.copy(resolverVisMapPath, Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"), StandardCopyOption.REPLACE_EXISTING);
+				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"));
 				List<String> newLines = new ArrayList<>();
 				for (String l : lines) {
+					/* 
+					 * FIXME: Here, instead of expecting a placeholder,
+					 * actually parse the resolver vis map file for the
+					 * last document name!
+					 * 
+					 * *or*
+					 * 
+					 * For every conversion, copy the template
+					 * resolver_vis_map.annis into the target folder
+					 * and replace placeholder with name.
+					 * 
+					 * *or*
+					 * 
+					 * Create a new folder for each conversion
+					 */
 					l = l.replace("$PLACEHOLDER-FOR-REAL-NAME$", name);
 					newLines.add(l);
 				}
@@ -199,14 +223,14 @@ public class ConversionRunner {
 				}
 				try {
 					log.info("Writing new resolver_vis_map for corpus " + name + " to file.");
-					Files.write(Paths.get("./ANNIS-OUTPUT/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
+					Files.write(Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
 				}
 				catch (IOException e) {
 					e.printStackTrace();
 					return false;
 				}
 				log.info("Creating zip file for corpus " + name + ".");
-				ZipCompressor.createZipFile(new File("./ANNIS-OUTPUT"), "./ANNIS-OUTPUT/" + name + ".zip");
+				ZipCompressor.createZipFile(new File("./ANNIS-OUTPUT/" + name), "./ANNIS-OUTPUT/" + name + ".zip");
 				log.info("Conversion finished successfully.");
 				return true;
 			}

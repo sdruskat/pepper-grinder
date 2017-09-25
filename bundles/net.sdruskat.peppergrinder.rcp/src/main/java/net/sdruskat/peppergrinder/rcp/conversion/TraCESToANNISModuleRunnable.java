@@ -121,7 +121,7 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 	protected StepDesc createExporterParams() {
 		StepDesc stepDesc = new StepDesc();
 		stepDesc.setCorpusDesc(new CorpusDesc());
-		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(new File("").getAbsolutePath() + "/ANNIS-OUTPUT"));
+		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(new File("").getAbsolutePath() + "/ANNIS-OUTPUT/" + name));
 		stepDesc.setName("ANNISExporter");
 		stepDesc.setVersion("2.0.9.SNAPSHOT");
 		stepDesc.setModuleType(MODULE_TYPE.EXPORTER);
