@@ -56,8 +56,6 @@ location "http://corpus-tools.org/p2/" {
 	org.eclipse.aether.util
 	com.github.hazendaz.javabean-tester
 	org.antlr.antlr4-runtime
-	
-	org.corpus-tools.graphannis-api [0.2.0, 0.3.0)
 }
 
 location "http://download.eclipse.org/technology/swtbot/releases/2.5.0/" {
@@ -70,9 +68,20 @@ location "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052021185
 	org.junit
 	org.mockito [1.9.5, 2.0.0)
 	org.hamcrest
+	ch.qos.logback.classic
+	ch.qos.logback.core
+	ch.qos.logback.slf4j
 }
 
 location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" {
 	org.eclipse.e4.tools.spy
 	org.eclipse.e4.tools.model.spy
+}
+
+location "http://build-artifacts.wetransform.to/p2/slf4jplus/import"  {
+	de.fhg.igd.slf4jplus
+	de.fhg.igd.slf4jplus.logback
+	de.fhg.igd.slf4jplus.logback.appender
+	de.fhg.igd.slf4jplus.logback.observer
+	de.fhg.igd.slf4jplus.ui.errorlog
 }

@@ -13,6 +13,8 @@
 
     <modules>
         <module>net.sdruskat.peppergrinder.feature</module>
+        <module>net.sdruskat.peppergrinder.feature.jre</module>
+        <module>net.sdruskat.peppergrinder.feature.jre.win</module>
     </modules>
 </project>
 

@@ -17,6 +17,17 @@
    <windowImages/>
 
 
+   <launcher name="pepper-grinder">
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+
    <plugins>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.annotation"/>
@@ -111,9 +122,12 @@
       <feature id="net.sdruskat.peppergrinder.feature" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.emf.ecore"/>
+      <feature id="net.sdruskat.peppergrinder.feature.jre" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
+      <plugin id="net.sdruskat.peppergrinder.logging" autoStart="true" startLevel="0" />
+      <plugin id="org.corpus-tools.pepper-framework" autoStart="true" startLevel="3" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />

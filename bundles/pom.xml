@@ -13,6 +13,7 @@
     
     <modules>
     	<module>net.sdruskat.peppergrinder.rcp</module>
+        <module>net.sdruskat.peppergrinder.logging</module>
     </modules>
 
 </project>

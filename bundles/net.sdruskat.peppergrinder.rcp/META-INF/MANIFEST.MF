@@ -14,6 +14,24 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.e4.core.di;bundle-version="0.0.0",
  org.eclipse.e4.ui.di;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0",
- org.eclipse.core.runtime;bundle-version="0.0.0"
+ org.eclipse.core.runtime;bundle-version="0.0.0",
+ org.corpus-tools.pepper-framework,
+ org.corpus-tools.pepper-lib,
+ org.apache.commons.io;bundle-version="2.4.0",
+ com.google.guava;bundle-version="19.0.0",
+ org.eclipse.aether.api,
+ org.eclipse.aether.impl,
+ org.eclipse.aether.maven,
+ org.eclipse.aether.connector.basic;bundle-version="1.0.2",
+ org.eclipse.aether.spi;bundle-version="1.0.2",
+ org.eclipse.aether.transport.file;bundle-version="1.0.2",
+ org.eclipse.aether.transport.http;bundle-version="1.0.2",
+ org.eclipse.aether.util;bundle-version="1.0.2",
+ org.codehaus.plexus.utils;bundle-version="3.0.20",
+ org.eclipse.emf.common,
+ org.eclipse.e4.core.services,
+ org.eclipse.ui,
+ org.corpus-tools.salt-api
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Import-Package: org.slf4j

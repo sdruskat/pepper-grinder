@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender class="ch.qos.logback.core.FileAppender" name="PEPPER">
+        <file>pepper.log</file>
+        <append>false</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
+        <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>[%-5level] %logger{35}: %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender class="ch.qos.logback.core.FileAppender" name="GRINDER">
+        <file>grinder.log</file>
+        <append>false</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
+        <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>[%-5level] %logger{35}: %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender class="ch.qos.logback.core.FileAppender" name="TRACES">
+        <file>traces.log</file>
+        <append>false</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
+        <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>[%-5level] %logger{35}: %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger additivity="false" level="debug" name="de.uni_hamburg.traces">
+        <appender-ref ref="TRACES"/>
+    </logger>
+    <logger additivity="false" level="debug" name="net.sdruskat.peppergrinder">
+        <appender-ref ref="GRINDER"/>
+    </logger>
+    <logger additivity="false" level="info" name="org.corpus_tools">
+        <appender-ref ref="PEPPER"/>
+    </logger>
+    <root level="off">
+        <appender-ref ref="PEPPER"/>
+        <appender-ref ref="GRINDER"/>
+        <appender-ref ref="TRACES"/>
+    </root>
+</configuration>

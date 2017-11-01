@@ -37,6 +37,15 @@
       </goals>
      </execution>
     </executions>
+    <configuration>
+			<products>
+				<product>
+					<id>pepper-grinder</id>
+					<archiveFileName>pepper-grinder-${project.version}</archiveFileName>
+					<rootFolder>pepper-grinder</rootFolder>
+				</product>
+			</products>
+		</configuration>
    </plugin>
   </plugins>
  </build>

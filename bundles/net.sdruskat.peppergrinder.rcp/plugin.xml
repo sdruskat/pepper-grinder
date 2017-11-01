@@ -3,7 +3,7 @@
 <plugin>
 
    <extension
-         id="product"
+         id="net.sdruskat.peppergrinder.rcp.product"
          point="org.eclipse.core.runtime.products">
       <product
             name="net.sdruskat.peppergrinder.rcp"
