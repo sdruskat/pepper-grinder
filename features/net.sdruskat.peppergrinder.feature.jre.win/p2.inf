@@ -1,0 +1,4 @@
+instructions.configure=\
+org.eclipse.equinox.p2.touchpoint.eclipse.setJvm(jvm:features/net.sdruskat.peppergrinder.feature.jre.win_1.8.0/jre1.8.0_152/bin);
+instructions.unconfigure=\
+org.eclipse.equinox.p2.touchpoint.eclipse.setJvm(jvm:null);
