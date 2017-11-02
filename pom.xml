@@ -12,10 +12,21 @@
 		<relativePath>./releng/net.sdruskat.peppergrinder.configuration</relativePath>
 	</parent>
 
+	<build>
+		<plugins>
+			<plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-versions-plugin</artifactId>
+        <version>1.0.0</version>
+      </plugin>
+  </plugins>
+</build>
+
 	<modules>
 		<module>bundles</module>
 		<module>features</module>
 		<module>releng</module>
 	</modules>
+<version>0.1.1</version>
 </project>
 
