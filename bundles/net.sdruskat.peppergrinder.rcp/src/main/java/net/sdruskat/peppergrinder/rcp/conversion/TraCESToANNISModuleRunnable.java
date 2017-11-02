@@ -24,6 +24,7 @@ package net.sdruskat.peppergrinder.rcp.conversion;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 import org.corpus_tools.pepper.common.CorpusDesc;
@@ -47,9 +48,15 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 	private Properties orderRelationAdderProps;
 	private Properties annisExporterProps;
 	private String name;
+	private final String dateString;
+	private static final String OUTPUT_PATH = "./output";
+
+	private static final String OUTPUT_FORMAT = "annis";
 
 	public TraCESToANNISModuleRunnable(boolean cancelable, PepperConnector pepperConnector, String corpusDirectoryPath) {
 		super(cancelable, pepperConnector, corpusDirectoryPath);
+		LocalDateTime date = LocalDateTime.now();
+		this.dateString = date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + "-" + date.getHour() + "-" + date.getMinute() + "-" + date.getSecond();
 		orderRelationAdderProps = new Properties();
 		orderRelationAdderProps.put("segmentation-layers", "{TR,FIDED}");
 		annisExporterProps = new Properties();
@@ -72,6 +79,11 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 			String[] split = corpusFile.getName().split("\\.");
 			if (split.length > 1) {
 				name = split[0];
+				// Cut off trailing "EA" (TraCES standard name ending)
+				if (name.endsWith("EA")) {
+					int nameLength = name.length();
+					name = name.substring(0, nameLength - 2);
+				}
 			}
 		}
 		else {
@@ -121,7 +133,7 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 	protected StepDesc createExporterParams() {
 		StepDesc stepDesc = new StepDesc();
 		stepDesc.setCorpusDesc(new CorpusDesc());
-		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(new File("").getAbsolutePath() + "/ANNIS-OUTPUT/" + name));
+		stepDesc.getCorpusDesc().setCorpusPath(URI.createFileURI(new File("").getAbsolutePath() + getUnprefixedOutputPath() + "/" + name + "/" + getOutputFormat() + "/" + getDateString()));
 		stepDesc.setName("ANNISExporter");
 		stepDesc.setVersion("2.0.9.SNAPSHOT");
 		stepDesc.setModuleType(MODULE_TYPE.EXPORTER);
@@ -129,11 +141,27 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 		return (stepDesc);
 	}
 
+	String getDateString() {
+		return dateString;
+	}
+
 	/**
 	 * @return The name of the corpus that is currently being converted.
 	 */
 	public final String getName() {
 		return name;
+	}
+
+	public String getOutputPath() {
+		return OUTPUT_PATH;
+	}
+	
+	private String getUnprefixedOutputPath() {
+		return OUTPUT_PATH.substring(1);
+	}
+
+	public String getOutputFormat() {
+		return OUTPUT_FORMAT;
 	}
 
 }
