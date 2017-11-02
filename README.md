@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sdruskat/pepper-grinder.svg?branch=traces-grinder)](https://travis-ci.org/sdruskat/pepper-grinder)
+[![Build Status](https://travis-ci.org/sdruskat/pepper-grinder.svg?branch=master)](https://travis-ci.org/sdruskat/pepper-grinder)
 
 # Pepper Grinder
 

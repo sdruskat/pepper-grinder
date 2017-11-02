@@ -113,7 +113,7 @@ public class ConversionWorkflowPart {
 				boolean outcome = runner.run();
 				if (outcome) {
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + runner.getName() + "\" finished successfully.\n\n"
-							+ "The ANNIS files are located in the folder './ANNIS-OUTPUT'.");
+							+ "The ANNIS files are located in the folder './output'.");
 
 				}
 				else {

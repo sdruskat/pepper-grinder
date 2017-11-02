@@ -26,9 +26,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -192,11 +194,15 @@ public class ConversionRunner {
 			boolean outcome = moduleRunnable.get().booleanValue();
 			log.info("Conversion has run successfully: " + outcome + ".");
 			name = ((TraCESToANNISModuleRunnable) moduleRunnable).getName();
+			String outputPath = ((TraCESToANNISModuleRunnable) moduleRunnable).getOutputPath();
+			String outputFormat = ((TraCESToANNISModuleRunnable) moduleRunnable).getOutputFormat();
+			String dateString = ((TraCESToANNISModuleRunnable) moduleRunnable).getDateString();
+			String prefix = outputPath + "/" + name + "/" + outputFormat + "/" + dateString ;
 			if (outcome) {
 				log.info("Configuring ANNIS resolver_vis_map for corpus " + name + ".");
 				Path resolverVisMapPath = Paths.get("./configuration/resolver_vis_map.annis");
-				Files.copy(resolverVisMapPath, Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"), StandardCopyOption.REPLACE_EXISTING);
-				List<String> lines = Files.readAllLines(Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"));
+				Files.copy(resolverVisMapPath, Paths.get(prefix + "/resolver_vis_map.annis"), StandardCopyOption.REPLACE_EXISTING);
+				List<String> lines = Files.readAllLines(Paths.get(prefix + "/resolver_vis_map.annis"));
 				List<String> newLines = new ArrayList<>();
 				for (String l : lines) {
 					/* 
@@ -223,14 +229,14 @@ public class ConversionRunner {
 				}
 				try {
 					log.info("Writing new resolver_vis_map for corpus " + name + " to file.");
-					Files.write(Paths.get("./ANNIS-OUTPUT/" + name + "/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
+					Files.write(Paths.get(prefix + "/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
 				}
 				catch (IOException e) {
 					e.printStackTrace();
 					return false;
 				}
 				log.info("Creating zip file for corpus " + name + ".");
-				ZipCompressor.createZipFile(new File("./ANNIS-OUTPUT/" + name), "./ANNIS-OUTPUT/" + name + ".zip");
+				ZipCompressor.createZipFile(new File(prefix), prefix + "/" + name + ".zip");
 				log.info("Conversion finished successfully.");
 				return true;
 			}
