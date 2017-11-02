@@ -12,7 +12,7 @@ geometry: margin=1in
 
 In order to convert sucessfully between the TraCES JSON format and the ANNIS format, corpora must be split over separate directories. Each directory must contain the corpus' JSON file (`corpusEA.json`) as well as the respective annotation files (`corpusDEA.ann` and `corpusTEA.ann`).
 
-Only one corpus can be converted at any one time with Pepper Grinder.
+Only one corpus can be converted at any one time with this version of Pepper Grinder.
 
 # Installation
 
@@ -25,7 +25,7 @@ Run Pepper Grinder by double-clicking on the executable (`pepper-grinder` or `pe
 Using the *Browse* button, browse for a folder containing a corpus (cf. [Requirements](#requirements) for details).
 Start the conversion process by clicking on *Run conversion*.
 
-Once the corpus has been converted (may take a few minutes), the folder "ANNIS-OUTPUT" will contain both a folder with the name of the corpus, which contains the ANNIS source files, and the folder "ANNIS-OUTPUT" will also contain an archive of these file with the name of the corpus and the ending `.zip`. Use the ZIP file to upload the corpus to ANNIS.
+Once the corpus has been converted (may take a few minutes), the folder "output" will contain a sub-folder with the corpus name, which contains a folder with the output format name, which contains a folder with the conversion timestamp, which contains the ANNIS source files, and an archive of these files with the name of the corpus and the ending `.zip`. Use the ZIP file to upload the corpus to ANNIS.
 
 
 # License
