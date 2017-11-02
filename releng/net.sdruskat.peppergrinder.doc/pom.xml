@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
     <groupId>net.sdruskat.peppergrinder</groupId>
     <artifactId>net.sdruskat.peppergrinder.doc</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.1</version>
   <name>Pepper Grinder Documentation</name>
   <description>Developer documentation and API</description>
   <properties>
@@ -184,9 +184,8 @@
                   <executable>pandoc</executable>
                   <arguments>
                     <argument>-s</argument>
-                    <argument>-S</argument>
                     <argument>-f</argument>
-                    <argument>markdown+yaml_metadata_block</argument>
+                    <argument>markdown+yaml_metadata_block+smart</argument>
                     <argument>-t</argument>
                     <argument>docbook</argument>
                     <argument>${project.basedir}/src/main/pandoc/documentation.md</argument>
@@ -194,8 +193,8 @@
                     <argument>-o</argument>
                     <argument>${project.basedir}/src/main/docbook/index.xml</argument>
                     <!-- Hack: misuse author metadate to display in all versions), Markdown source uses date metadate for author name -->
-                    <argument>-M</argument>
-                    <argument>author=&quot;Version ${project.version} (${timestamp})&quot;</argument>
+                    <!--<argument>-M</argument>
+                    <argument>author=&quot;Version ${project.version} (${timestamp})&quot;</argument>-->
                   </arguments>
                 </configuration>
               </execution>
@@ -211,16 +210,15 @@
                   <executable>pandoc</executable>
                   <arguments>
                     <argument>-s</argument>
-                    <argument>-S</argument>
                     <argument>-f</argument>
-                    <argument>markdown+yaml_metadata_block</argument>
+                    <argument>markdown+yaml_metadata_block+smart</argument>
                     <argument>${project.basedir}/src/main/pandoc/documentation.md</argument>
                     <!-- end Markdown documents -->
                     <argument>-o</argument>
                     <argument>${basedir}/src/main/resources/pepper-grinder-user-guide.pdf</argument>
                     <!-- Hack: misuse author metadate to display in all versions), Markdown source uses date metadate for author name -->
-                    <argument>-M</argument>
-                    <argument>author=&quot;Version ${project.version} (${timestamp})&quot;</argument>
+                    <!--<argument>-M</argument>
+                    <argument>author=&quot;Version ${project.version} (${timestamp})&quot;</argument>-->
                   </arguments>
                 </configuration>
               </execution>
