@@ -19,4 +19,4 @@ echo 'Replace config version in root POM with sed'
 sed -i -e '/<artifactId>net.sdruskat.peppergrinder.configuration<\/artifactId>/!b;n;c        <version>"$1"</version>' pom.xml 
 
 # Build documentation
-mvn -f -f ./releng/net.sdruskat.peppergrinder.doc/pom.xml clean package -P docs
+mvn -f ./releng/net.sdruskat.peppergrinder.doc/pom.xml clean package -P docs
