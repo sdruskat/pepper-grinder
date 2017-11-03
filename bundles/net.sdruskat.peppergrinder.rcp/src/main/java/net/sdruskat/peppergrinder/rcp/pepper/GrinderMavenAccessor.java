@@ -169,8 +169,8 @@ public class GrinderMavenAccessor {
 	/**
 	 * @param grinderPepperOSGiConnector
 	 */
-	public GrinderMavenAccessor(GrinderPepperOSGiConnector atomicPepperOSGiConnector) {
-		this.grinderPepperOSGiConnector = atomicPepperOSGiConnector;
+	public GrinderMavenAccessor(GrinderPepperOSGiConnector grinderPepperOSGiConnector) {
+		this.grinderPepperOSGiConnector = grinderPepperOSGiConnector;
 		{
 			DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 			locator.addService(ArtifactDescriptorReader.class, DefaultArtifactDescriptorReader.class);
@@ -187,7 +187,7 @@ public class GrinderMavenAccessor {
 		repos = new HashMap<>();
 		forbiddenFruits = new HashSet<>();
 		parentDependencies = new HashMap<>();
-		PATH_LOCAL_REPO = atomicPepperOSGiConnector.getGrinderPepperConfiguration().getTempPath().getAbsolutePath().concat("/local-repo/");
+		PATH_LOCAL_REPO = grinderPepperOSGiConnector.getGrinderPepperConfiguration().getTempPath().getAbsolutePath().concat("/local-repo/");
 		try {
 			File lr = new File(PATH_LOCAL_REPO);
 			if (lr.exists()) {

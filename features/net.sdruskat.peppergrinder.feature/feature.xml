@@ -2,7 +2,7 @@
 <feature
       id="net.sdruskat.peppergrinder.feature"
       label="Pepper Grinder Feature"
-      version="0.1.5"
+      version="0.1.6"
       provider-name="Stephan Druskat">
 
    <description url="http://www.example.com/description">
