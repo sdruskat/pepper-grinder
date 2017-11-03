@@ -8,4 +8,4 @@ This version of Pepper Grinder is a prototypical GUI for the [Pepper](https://gi
 
 If you use Pepper Grinder in your work, please cite it as follows.
 
-> Stephan Druskat. Pepper Grinder (v0.1.6). Zenodo. https://doi.org/10.5281/zenodo.1041735.
+> Stephan Druskat. Pepper Grinder (v0.1.7). Zenodo. https://doi.org/10.5281/zenodo.1041735.
