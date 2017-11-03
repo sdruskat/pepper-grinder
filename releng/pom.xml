@@ -2,13 +2,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sdruskat.peppergrinder</groupId>
     <artifactId>net.sdruskat.peppergrinder.releng</artifactId>
-    <version>0.1.4</version>
+    <version>0.1.5</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>net.sdruskat.peppergrinder</groupId>
         <artifactId>net.sdruskat.peppergrinder.root</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
     </parent>
 
     <modules>
