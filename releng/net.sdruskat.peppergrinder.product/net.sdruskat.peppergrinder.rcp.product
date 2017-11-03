@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="net.sdruskat.peppergrinder.rcp" uid="pepper-grinder" id="net.sdruskat.peppergrinder.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.1.6" useFeatures="true" includeLaunchers="true">
+<product name="net.sdruskat.peppergrinder.rcp" uid="pepper-grinder" id="net.sdruskat.peppergrinder.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.1.7" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -117,10 +117,10 @@
 
    <features>
       <feature id="org.eclipse.e4.rcp" installMode="root"/>
-      <feature id="net.sdruskat.peppergrinder.feature" version="0.1.6"/>
+      <feature id="net.sdruskat.peppergrinder.feature" version="0.1.7"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.emf.ecore"/>
-      <feature id="net.sdruskat.peppergrinder.feature.jre" version="0.1.6"/>
+      <feature id="net.sdruskat.peppergrinder.feature.jre" version="0.1.7"/>
    </features>
 
    <configurations>
