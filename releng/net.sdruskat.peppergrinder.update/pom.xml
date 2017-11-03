@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.sdruskat.peppergrinder</groupId>
         <artifactId>net.sdruskat.peppergrinder.releng</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
     </parent>
     <artifactId>net.sdruskat.peppergrinder.update</artifactId>
     <packaging>eclipse-repository</packaging>
