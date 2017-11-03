@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/net.sdruskat.peppergrinder.feature_0.1.4.jar" id="net.sdruskat.peppergrinder.feature" version="0.1.4">
+   <feature url="features/net.sdruskat.peppergrinder.feature_0.1.5.jar" id="net.sdruskat.peppergrinder.feature" version="0.1.5">
       <category name="peppergrinder"/>
    </feature>
    <category-def name="peppergrinder" label="Pepper Grinder"/>
