@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>net.sdruskat.peppergrinder</groupId>
 		<artifactId>net.sdruskat.peppergrinder.configuration</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>0.1.1</version>
 		<relativePath>./releng/net.sdruskat.peppergrinder.configuration</relativePath>
 	</parent>
 
