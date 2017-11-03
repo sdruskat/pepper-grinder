@@ -4,7 +4,6 @@ abstract: |
     [Pepper, a conversion framework for linguistic
     data](http://corpus-tools.org/pepper), and allows conversion from the
     custom TraCES JSON format to the ANNIS format.
-author: 'Version 0.1.2 (2017-11-03 09:27)'
 date:
 - Stephan Druskat
 geometry: margin=1in
