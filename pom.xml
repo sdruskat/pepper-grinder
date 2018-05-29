@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>net.sdruskat.peppergrinder</groupId>
 		<artifactId>net.sdruskat.peppergrinder.configuration</artifactId>
-<version>0.1.7</version>
+<version>0.1.8</version>
 		<relativePath>./releng/net.sdruskat.peppergrinder.configuration</relativePath>
 	</parent>
 
@@ -27,6 +27,6 @@
 		<module>features</module>
 		<module>releng</module>
 	</modules>
-<version>0.1.7</version>
+<version>0.1.8</version>
 </project>
 

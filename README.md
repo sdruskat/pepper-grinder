@@ -16,4 +16,4 @@ Pepper Grinder requires a Java Runtime Environment (JRE) >= v 1.8.0 to be instal
 
 If you use Pepper Grinder in your work, please cite it as follows.
 
-> Stephan Druskat. Pepper Grinder (v0.1.7). Zenodo. https://doi.org/10.5281/zenodo.1041744.
+> Stephan Druskat. Pepper Grinder (v0.1.8). Zenodo. https://doi.org/10.5281/zenodo.1041735.

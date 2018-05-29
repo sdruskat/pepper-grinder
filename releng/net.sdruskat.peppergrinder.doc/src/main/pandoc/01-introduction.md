@@ -62,6 +62,14 @@ ignore limits on garbage collection. The respective setting in `pepper-grinder.i
 is `-XX:-UseGCOverheadLimit`. If you run into trouble with garbage
 collection, simple delete this line and see if the situation improves. 
 
+# How to cite Pepper Grinder
+
+If you use data converted with Pepper Grinder in your work, you are required to
+cite the following software.
+
+- Stephan Druskat. Pepper Grinder (Version 0.1.8). Zenodo. https://doi.org/10.5281/zenodo.1041734.
+- Stephan Druskat. GeTaModules (Version 0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1146984.
+
 # License
 
 Pepper Grinder is licensed under the Apache License, Version 2.0.

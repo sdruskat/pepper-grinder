@@ -1,0 +1,10 @@
+{
+  "visualizers": [
+  {
+   "type" : "htmldoc",
+   "displayName" : "diplomatic transcription",
+   "mappings" : "config:doc"
+  }
+  ]
+}
+

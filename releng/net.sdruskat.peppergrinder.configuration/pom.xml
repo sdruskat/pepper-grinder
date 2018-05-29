@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sdruskat.peppergrinder</groupId>
 	<artifactId>net.sdruskat.peppergrinder.configuration</artifactId>
-	<version>0.1.7</version>
+	<version>0.1.8</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -32,7 +32,7 @@
 						<artifact>
 							<groupId>net.sdruskat.peppergrinder</groupId>
 							<artifactId>net.sdruskat.peppergrinder.target</artifactId>
-<version>0.1.7</version>
+<version>0.1.8</version>
 						</artifact>
 					</target>
 					<environments>

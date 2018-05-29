@@ -41,8 +41,8 @@ public class AboutHandler {
 		String version = Platform.getProduct().getDefiningBundle().getHeaders().get("Bundle-Version");
 		MessageDialog.openInformation(shell, "About", "Pepper Grinder (TraCES Edition) version " + version + "\n\n"
 				+ "If you use Pepper Grinder in your work, please cite it as follows:\n\n"
-				+ "Stephan Druskat. Pepper Grinder (v" + version + "). https://github.com/sdruskat/pepper-grinder/releases/tag/v" + version + "." 
-				+ "\n\nCopyright (c) 2017 Stephan Druskat\n"
+				+ "Stephan Druskat. Pepper Grinder (v" + version + "). Zenodo. https://doi.org/10.5281/zenodo.1041734." 
+				+ "\n\nCopyright (c) 2017ff. Stephan Druskat\n"
 				+ "Exploitation rights for this version belong exclusively to Universität Hamburg\n\n"
 				+ "Licensed under the Apache License, Version 2.0 (the \"License\");\n"
 				+ "you may not use this file except in compliance with the License.\n"
