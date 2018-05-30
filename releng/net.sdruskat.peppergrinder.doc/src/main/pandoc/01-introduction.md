@@ -67,8 +67,8 @@ collection, simple delete this line and see if the situation improves.
 If you use data converted with Pepper Grinder in your work, you are required to
 cite the following software.
 
-- Stephan Druskat. Pepper Grinder (Version 0.1.8). Zenodo. https://doi.org/10.5281/zenodo.1041734.
-- Stephan Druskat. GeTaModules (Version 0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1146984.
+- Stephan Druskat. Pepper Grinder (v0.1.8). Zenodo. https://doi.org/10.5281/zenodo.1255895.
+- Stephan Druskat. GeTaModules (v0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1255867.
 
 # License
 

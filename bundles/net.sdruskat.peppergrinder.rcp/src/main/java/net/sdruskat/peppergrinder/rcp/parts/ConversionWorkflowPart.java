@@ -118,8 +118,8 @@ public class ConversionWorkflowPart {
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + runner.getName() + "\" finished successfully.\n\n"
 							+ "The ANNIS files are located in the folder './output'.\n\n"
 							+ "If you use the converted data in your work, please cite the following software:\n\n"
-							+ "- Stephan Druskat. Pepper Grinder (v" + version + "). Zenodo. https://doi.org/10.5281/zenodo.1041734.\n"
-							+ "- Stephan Druskat. GeTaModules (v0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1146984.");
+							+ "- Stephan Druskat. Pepper Grinder (v" + version + "). Zenodo. https://doi.org/10.5281/zenodo.1255895.\n"
+							+ "- Stephan Druskat. GeTaModules (v0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1255867.");
 
 				}
 				else {
