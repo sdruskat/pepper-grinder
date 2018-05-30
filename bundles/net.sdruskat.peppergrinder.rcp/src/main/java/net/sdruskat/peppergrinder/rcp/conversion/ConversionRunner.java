@@ -26,18 +26,15 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CancellationException;
-
 import org.corpus_tools.pepper.common.MODULE_TYPE;
 import org.corpus_tools.pepper.common.PepperModuleDesc;
 import org.corpus_tools.pepper.connectors.PepperConnector;
@@ -49,6 +46,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sdruskat.peppergrinder.rcp.pepper.GrinderPepperStarter;
+import net.sdruskat.peppergrinder.rcp.util.FileCopier;
 import net.sdruskat.peppergrinder.rcp.util.ZipCompressor;
 
 /**
@@ -197,12 +195,14 @@ public class ConversionRunner {
 			String outputPath = ((TraCESToANNISModuleRunnable) moduleRunnable).getOutputPath();
 			String outputFormat = ((TraCESToANNISModuleRunnable) moduleRunnable).getOutputFormat();
 			String dateString = ((TraCESToANNISModuleRunnable) moduleRunnable).getDateString();
-			String prefix = outputPath + "/" + name + "/" + outputFormat + "/" + dateString ;
+			String prefix = outputPath + File.separator + name + File.separator + outputFormat + File.separator + dateString ;
 			if (outcome) {
 				log.info("Configuring ANNIS resolver_vis_map for corpus " + name + ".");
-				Path resolverVisMapPath = Paths.get("./configuration/resolver_vis_map.annis");
-				Files.copy(resolverVisMapPath, Paths.get(prefix + "/resolver_vis_map.annis"), StandardCopyOption.REPLACE_EXISTING);
-				List<String> lines = Files.readAllLines(Paths.get(prefix + "/resolver_vis_map.annis"));
+				Path resolverVisMapPath = Paths.get("." + File.separator + "configuration" + File.separator + "resolver_vis_map.annis");
+				Path extDataPath = Paths.get("." + File.separator + "configuration" + File.separator + "ExtData" + File.separator);
+				Path extDataOutputPath = Paths.get(prefix + File.separator);
+				Files.copy(resolverVisMapPath, Paths.get(prefix + File.separator + "resolver_vis_map.annis"), StandardCopyOption.REPLACE_EXISTING);
+				List<String> lines = Files.readAllLines(Paths.get(prefix + File.separator + "resolver_vis_map.annis"));
 				List<String> newLines = new ArrayList<>();
 				for (String l : lines) {
 					/* 
@@ -229,14 +229,16 @@ public class ConversionRunner {
 				}
 				try {
 					log.info("Writing new resolver_vis_map for corpus " + name + " to file.");
-					Files.write(Paths.get(prefix + "/resolver_vis_map.annis"), lineBuilder.toString().getBytes());
+					Files.write(Paths.get(prefix + File.separator + "resolver_vis_map.annis"), lineBuilder.toString().getBytes());
 				}
 				catch (IOException e) {
 					e.printStackTrace();
 					return false;
 				}
+				// Copy ExtData
+				FileCopier.copyDirectoryRecursively(extDataPath, extDataOutputPath);
 				log.info("Creating zip file for corpus " + name + ".");
-				ZipCompressor.createZipFile(new File(prefix), prefix + "/" + name + ".zip");
+				ZipCompressor.createZipFile(new File(prefix), prefix + File.separator + name + ".zip");
 				log.info("Conversion finished successfully.");
 				return true;
 			}

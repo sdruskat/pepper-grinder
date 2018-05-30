@@ -73,10 +73,10 @@ location "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052021185
 	ch.qos.logback.slf4j
 }
 
-location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" {
-	org.eclipse.e4.tools.spy
-	org.eclipse.e4.tools.model.spy
-}
+//location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" {
+//	org.eclipse.e4.tools.spy
+//	org.eclipse.e4.tools.model.spy
+//}
 
 location "http://build-artifacts.wetransform.to/p2/slf4jplus/import"  {
 	de.fhg.igd.slf4jplus

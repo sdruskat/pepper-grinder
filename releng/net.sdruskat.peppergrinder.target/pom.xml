@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.sdruskat.peppergrinder</groupId>
         <artifactId>net.sdruskat.peppergrinder.releng</artifactId>
-        <version>0.1.7</version>
+        <version>0.1.8</version>
     </parent>
     <artifactId>net.sdruskat.peppergrinder.target</artifactId>
     <packaging>eclipse-target-definition</packaging>

@@ -102,8 +102,8 @@ public class TraCESToANNISModuleRunnable extends PepperModuleRunnable {
 	@Override
 	protected StepDesc createImporterParams() {
 		StepDesc stepDesc = new StepDesc();
-		stepDesc.setName("TraCESImporter");
-		stepDesc.setVersion("1.0.0.SNAPSHOT");
+		stepDesc.setName("GeTaImporter");
+		stepDesc.setVersion("0.9.0");
 		stepDesc.setCorpusDesc(new CorpusDesc()
 				.setCorpusPath(URI.createFileURI(new File(this.corpusDirectoryPath).getAbsolutePath())));
 		stepDesc.setModuleType(MODULE_TYPE.IMPORTER);

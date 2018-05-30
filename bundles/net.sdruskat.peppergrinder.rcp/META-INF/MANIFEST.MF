@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Pepper Grinder Core Plugin
 Bundle-SymbolicName: net.sdruskat.peppergrinder.rcp;singleton:=true
-Bundle-Version: 0.1.7
+Bundle-Version: 0.1.8
 Bundle-Activator: net.sdruskat.peppergrinder.rcp.Activator
 Bundle-Vendor: Stephan Druskat
 Require-Bundle: javax.inject;bundle-version="0.0.0",

@@ -22,6 +22,8 @@ package net.sdruskat.peppergrinder.rcp.parts;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.layout.GridLayout;
@@ -112,8 +114,12 @@ public class ConversionWorkflowPart {
 				ConversionRunner runner = ConversionRunnerBuilder.withCorpusImportPath(corpusDirectoryPath).build();
 				boolean outcome = runner.run();
 				if (outcome) {
+					String version = Platform.getProduct().getDefiningBundle().getHeaders().get("Bundle-Version");
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Success!", "The conversion of corpus \"" + runner.getName() + "\" finished successfully.\n\n"
-							+ "The ANNIS files are located in the folder './output'.");
+							+ "The ANNIS files are located in the folder './output'.\n\n"
+							+ "If you use the converted data in your work, please cite the following software:\n\n"
+							+ "- Stephan Druskat. Pepper Grinder (v" + version + "). Zenodo. https://doi.org/10.5281/zenodo.1255895.\n"
+							+ "- Stephan Druskat. GeTaModules (v0.9.1). Zenodo. https://doi.org/10.5281/zenodo.1255867.");
 
 				}
 				else {
